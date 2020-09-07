@@ -1,0 +1,5 @@
+<%= form_with model: @album, local: true, :html => {:id => "edit_form"} do |a| %>
+  <strong class="px-2"> <%= a.label(:title, "Change Album Title:") %> </strong>
+  <%= a.text_field :title, :value => "", :placeholder => "Enter albums title"%>
+  <button class="btn font-weight-bold text-danger"> <%= a.submit("Change") %> </button>
+<% end %>

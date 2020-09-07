@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Google Roboto Font -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<!-- add after bootstrap.min.css -->
+	<link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.3.0/dist/bootstrap-toc.min.css">
+	<%= stylesheet_link_tag 'style' %>
+
+	<title>Fotobook - Tab Photos</title>
+</head>
+<body data-spy="scroll" data-target="#toc" class="ft-mainpage">
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark ft-navbar">
+	<div class="col-xs-1 col-md-1 offset-md-1 text-center">
+		<a class="navbar-brand ft-name font-weight-bold" href="#">Fotobook</a>
+	</div>
+
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<div class="col-md-5 mr-auto px-0">
+			<div class="input-group input-group-sm">
+				<input class="form-control" type="search" role="search" placeholder="Search Photo / Album" aria-label="Search">
+			</div>
+		</div>
+
+		<div class="col-xs-6 col-md-1 text-center">
+			<a class="navbar-brand" href="#">
+				<%= image_tag("tuanminh.png", class: "img-fluid rounded-circle ft-avatar", alt: "user-avatar") %>
+				<span class="font-weight-bold ft-login" href="#"> <%= @user.first_name %> <%= @user.last_name%> </span>
+			</a>
+		</div>
+
+		<div class="col-xs-6 col-md-2 text-center">
+			<a class="navbar-brand font-weight-bold ft-login" href="#">Logout</a>
+		</div>
+	</div>
+</nav>
+
+<div class="container-fluid ">
+	<div class="row">
+		<div class="col-xs-1 col-md-2 mt-5">
+			<nav class="sticky-top text-center" id="toc" data-toggle="toc">
+				<ul class="nav navbar-nav">
+					<button type="button" class="btn shadow-none content-text">Feeds</button>
+				</ul>
+				<ul class="nav navbar-nav">
+					<button type="button" class="btn shadow-none content-text">Discovery</button>
+				</ul>
+			</nav>
+		</div>
+
+		<main class="col-xs-6 col-md-8 bg-white mt-3 hmm">
+
+			<div class="row justify-content-center">
+				<div class="col-5 col-md-2 pt-4 pl-4">
+					<%= image_tag("profile.png", class: "img-fluid ft-profile-img", alt: "profile-avatar") %>
+				</div>
+
+				<div class="col-7 col-md- p-0">
+					<span class="badge badge-pill badge-warning text-white font-weight-bold px-3 pt-1 mt-4 ml-1">Following</span>
+					<a href="#">
+						<p class="pt-3 pl-2 h1 text-dark font-weight-bolder"> <%= User.find(params[:id]).first_name%> <%= User.find(params[:id]).last_name%></p>
+					</a>
+
+					<div class="row px-3">
+						<div class="col-10 col-md-3 border-right border-secondary">
+							<a class="photo-text font-weight-bold">108 <small>PHOTOS</small></a>
+						</div>
+
+						<div class="col-10 col-md-3 border-right border-secondary">
+							<a class="photo-text font-weight-bold disabled">43 <small>ALBUMS</small></a>
+						</div>
+
+						<div class="col-10 col-md-3 border-right border-secondary">
+							<a class="photo-text font-weight-bold disabled">22 <small>FOLLOWINGS</small></a>
+						</div>
+
+						<div class="col-10 col-md-3 border-right border-secondary">
+							<a class="photo-text font-weight-bold disabled">13 <small>FOLLOWERS</small></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="float-md-right">
+<!--				<button type="button" class="btn btn-sm m-3 px-3 btn-success">Add Photo</button>-->
+				<%= link_to("Add Photo", new_user_photo_path(user_id: @user.id), class: "btn btn-sm m-3 px-3 btn-success")%>
+			</div>
+
+			<div class="row mt-5 justify-content-center">
+				<div class="col-xs-1 col-md-2 m-4 p-0">
+					<div class="col-md-12 p-0 border">
+						<img class="img-fluid ft-imgs" src="5wgCcaI.gif" alt="photo">
+					</div>
+					<figcaption class="text-center small text-secondary border-0">Photo Titles go here</figcaption>
+				</div>
+
+				<div class="col-xs-1 col-md-2 m-4 p-0">
+					<div class="col-md-12 p-0 border">
+						<img class="img-fluid ft-imgs" src="5wgCcaI.gif" alt="photo">
+					</div>
+					<figcaption class="text-center small text-secondary border-0">Photo Titles go here</figcaption>
+				</div>
+
+				<div class="col-xs-1 col-md-2 m-4 p-0">
+					<div class="col-md-12 p-0 border">
+						<img class="img-fluid ft-imgs" src="5wgCcaI.gif" alt="photo">
+					</div>
+					<figcaption class="text-center small text-secondary border-0">Photo Titles go here</figcaption>
+				</div>
+
+				<div class="col-xs-1 col-md-2 m-4 p-0">
+					<div class="col-md-12 p-0 border">
+						<img class="img-fluid ft-imgs" src="5wgCcaI.gif" alt="photo">
+					</div>
+					<figcaption class="text-center small text-secondary border-0">Photo Titles go here</figcaption>
+				</div>
+
+				<div class="col-xs-1 col-md-2 m-4 p-0">
+					<div class="col-md-12 p-0 border">
+						<img class="img-fluid ft-imgs" src="5wgCcaI.gif" alt="photo">
+					</div>
+					<figcaption class="text-center small text-secondary border-0">Photo Titles go here</figcaption>
+				</div>
+
+				<div class="col-xs-1 col-md-2 m-4 p-0">
+					<div class="col-md-12 p-0 border">
+						<img class="img-fluid ft-imgs" src="5wgCcaI.gif" alt="photo">
+					</div>
+					<figcaption class="text-center small text-secondary border-0">Photo Titles go here</figcaption>
+				</div>
+
+				<div class="col-xs-1 col-md-2 m-4 p-0">
+					<div class="col-md-12 p-0 border">
+						<img class="img-fluid ft-imgs" src="5wgCcaI.gif" alt="photo">
+					</div>
+					<figcaption class="text-center small text-secondary border-0">Photo Titles go here</figcaption>
+				</div>
+
+				<div class="col-xs-1 col-md-2 m-4 p-0">
+					<div class="col-md-12 p-0 border">
+						<img class="img-fluid ft-imgs" src="5wgCcaI.gif" alt="photo">
+					</div>
+					<figcaption class="text-center small text-secondary border-0">Photo Titles go here</figcaption>
+				</div>
+
+				<div class="col-xs-1 col-md-2 m-4 p-0">
+					<div class="col-md-12 p-0 border">
+						<img class="img-fluid ft-imgs" src="5wgCcaI.gif" alt="photo">
+					</div>
+					<figcaption class="text-center small text-secondary border-0">Photo Titles go here</figcaption>
+				</div>
+
+				<div class="col-xs-1 col-md-2 m-4 p-0">
+					<div class="col-md-12 p-0 border">
+						<img class="img-fluid ft-imgs" src="5wgCcaI.gif" alt="photo">
+					</div>
+					<figcaption class="text-center small text-secondary border-0">Photo Titles go here</figcaption>
+				</div>
+			</div>
+
+
+			<footer>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination m-3 justify-content-center">
+						<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+						<li class="page-item active"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					</ul>
+				</nav>
+			</footer>
+		</main>
+
+		<div class="col-xs-1 col-md-2">
+
+		</div>
+	</div>
+
+</div>
+
+
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/1fb1fb2be8.js" crossorigin="anonymous"></script>
+
+<!-- Optional JavaScript -->
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<!-- add after bootstrap.min.js -->
+<script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.3.0/dist/bootstrap-toc.min.js"></script>
+
+<script src="src.js"></script>
+</body>
+</html>

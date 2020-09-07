@@ -1,0 +1,376 @@
+.navbar {
+    padding: 0;
+}
+
+.nav-link {
+    padding: 3px;
+}
+
+.bg-card {
+    background-color: #F8F8F8;
+}
+
+nav[data-toggle="toc"] {
+    top: 130px;
+}
+
+.text-blue {
+    color: #3C5999;
+}
+
+.card-img {
+	height: 300px;
+	width: 200px;
+}
+
+a.disabled {
+    /* Make the disabled links grayish*/
+    color: gray;
+    /* And disable the pointer events */
+    pointer-events: none;
+  }
+
+/* .hmm {
+    height: 220vh;
+} */
+
+footer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* position: absolute; */
+    bottom: 0;
+    width: 100%;
+}
+
+.ft-navbar {
+	font-family: Roboto;
+	font-style: normal;
+    background-color: #3C5999;
+}
+
+.ft-mainpage {
+    padding-top: 50px;
+    background-color: #e9ebee;
+}
+
+.ft-button {
+    border: 1px solid #3C5999;
+    color: #3C5999;
+    font-weight: 600;
+}
+
+.ft-back-btn {
+    background-color: #3C5999;
+    color: white;
+}
+
+.ft-button:hover, .active {
+    background-color: #3C5999;
+    color: white;
+}
+
+.heart-btn {
+    outline: none;
+    border: none;
+    background-color: #f7f7f7;
+    color: gray
+}
+
+.heart-btn:hover {
+    outline: none;
+    border: none;
+    background-color: white;
+    color: #3C5999;
+}
+
+.photo-btn {
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	height: 200px;
+	width: 200px;
+    background-color: #f7f7f7;
+    color: gray;
+    border: 2px dashed gray;
+    padding: 50px;
+}
+
+.file-input {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0;
+}
+
+.follow-btn {
+    color: orange;
+    border: 1px solid orange;
+    border-radius: 14px;
+    padding: 1px 12px;
+    font-size: 12px;
+    size: 1px;
+}
+
+.follow-btn:hover {
+    color: white;
+    background-color: orange;
+    border: 1px solid orange;
+    border-radius: 14px;
+    padding: 1px 12px;
+    font-size: 12px;
+    size: 1px;
+}
+
+.change-btn {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    right: 0;
+    text-align: center;  
+}
+
+.active-follow {
+    color: white;
+    background-color: orange;
+    border: 1px solid orange;
+    border-radius: 14px;
+    padding: 1px 12px;
+    font-size: 12px;
+    size: 1px;
+}
+
+.like-numbers {
+    font-size: 12px;
+    padding-bottom: 3px;
+}
+
+.top-content {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    color: white;
+    background: rgba(0, 0, 0, 0.4);
+    font-family: Roboto;
+    font-size: 11px;
+}
+
+.top-content:hover {
+    position: absolute;
+    color: white;
+    background: rgba(0, 0, 0, 0.4);
+    font-family: Roboto;
+    opacity: 0.6;
+}
+
+.top-right {
+    float: right;
+    position: absolute;
+    color: black;
+    top: 0;
+    right: 4%;
+}
+
+.top-right:hover {
+    float: right;
+    position: absolute;
+    color: white;
+    top: 0;
+    right: 4%;
+}
+
+.bottom-right {
+    float: right;
+    position: absolute;
+    bottom: 0;
+    right: 1%;
+    /* width: 100%; */
+}
+
+.ft-date {
+    font-size: 12px;
+}
+
+.ft-imgs {
+    height: 180px;
+}
+
+.album-imgs {
+    height: 270px;
+}
+
+.ft-feed {
+    padding: 0;
+}
+
+.content-text {
+	color: gray;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.content-text:hover, .content-text-active {
+    color: #3C5999;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.ft-name {
+	font-family: inherit;
+	font-style: inherit;
+    font-size: 18px;
+    margin-right: 0;
+}
+
+.ft-login {
+	font-family: inherit;
+    font-size: 14px;
+}
+
+.ft-center-text {
+	font-family: inherit;
+    font-style: inherit;
+    font-size: 40px;
+	color: #3C5999;
+}
+
+.ft-avatar {
+    height: 32px;
+    width: 30px;
+}
+
+.ft-profile-img {
+    height: 120px;
+    width: 120px;
+}
+
+.count_albums {
+    background-color: black;
+    left: 20%;
+    right: 20%;
+    top: 30%;
+    opacity: 40%;
+}
+
+.photo-text {
+    font-size: 20px;
+}
+
+.google-icon {
+    width: 130px;
+}
+
+.fb-icon {
+    color: #3C5999;
+}
+
+.twitter-icon {
+    background-color: #55ACEE;
+    padding: 5px;
+}
+
+.rotate6 {
+    -webkit-transform: rotate(6deg);
+    -moz-transform: rotate(6deg);
+    -o-transform: rotate(6deg);
+    -ms-transform: rotate(6deg);
+    transform: rotate(6deg);
+}
+
+.rotate11 {
+    -webkit-transform: rotate(11deg);
+    -moz-transform: rotate(11deg);
+    -o-transform: rotate(11deg);
+    -ms-transform: rotate(11deg);
+    transform: rotate(11deg);
+}
+
+.form-signin
+{
+    max-width: 330px;
+    padding: 15px;
+    margin: 40px auto 1px;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox
+{
+    margin-bottom: 10px;
+}
+
+.form-signin .checkbox
+{
+    font-weight: normal;
+}
+
+.form-signin .form-control
+{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin .form-control:focus
+{
+    z-index: 2;
+}
+
+.form-signin input[type="text"]
+{
+    margin-bottom: 10px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-signin input[type="password"]
+{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.account-wall
+{
+    margin-top: 20px;
+    padding: 1px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login-title
+{
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+
+.profile-img
+{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.login-btn
+{
+    background-color: #3C5999;
+}
+
+.new-account
+{
+    color: #3C5999;
+    display: block;
+    margin-top: 10px;
+}
+
