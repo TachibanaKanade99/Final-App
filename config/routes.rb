@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   	resources :users, :photos, :albums, only: [:show, :edit, :update, :destroy]
   end
 
+  root 'home#show'
+
   # Albums
   # namespace :albums do
   #   resources :photos, only: [:edit, :update, :show, :destory]
