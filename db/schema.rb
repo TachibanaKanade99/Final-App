@@ -10,9 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_06_163826) do
+ActiveRecord::Schema.define(version: 2020_09_06_154402) do
 
-  create_table "albums", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "albums", force: :cascade do |t|
     t.string "title", limit: 140, null: false
     t.string "description", limit: 300, null: false
     t.string "sharing_mode", null: false
@@ -22,17 +25,19 @@ ActiveRecord::Schema.define(version: 2020_09_06_163826) do
     t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
-  create_table "albums_photos", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "albums_photos", id: false, force: :cascade do |t|
     t.bigint "photo_id", null: false
     t.bigint "album_id", null: false
+    t.index ["album_id"], name: "index_albums_photos_on_album_id"
+    t.index ["photo_id"], name: "index_albums_photos_on_photo_id"
   end
 
-  create_table "follows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "follows", force: :cascade do |t|
     t.bigint "follower_id"
     t.bigint "followed_user_id"
   end
 
-  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "likes", force: :cascade do |t|
     t.string "likeable_type"
     t.bigint "likeable_id"
     t.bigint "user_id"
@@ -42,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_163826) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "photos", force: :cascade do |t|
     t.string "title", limit: 140, null: false
     t.string "description", limit: 300, null: false
     t.string "sharing_mode", null: false
@@ -53,7 +58,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_163826) do
     t.index ["user_id"], name: "index_photos_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "first_name", limit: 25, default: "Tuan", null: false
     t.string "last_name", limit: 25, default: "Minh", null: false
     t.string "email", default: "", null: false
@@ -69,12 +74,10 @@ ActiveRecord::Schema.define(version: 2020_09_06_163826) do
     t.string "unconfirmed_email"
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["first_name"], name: "index_users_on_first_name"
     t.index ["last_name"], name: "index_users_on_last_name"
     t.index ["password"], name: "index_users_on_password"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "albums", "users"

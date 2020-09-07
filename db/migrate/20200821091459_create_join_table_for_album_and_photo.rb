@@ -3,5 +3,6 @@ class CreateJoinTableForAlbumAndPhoto < ActiveRecord::Migration[6.0]
     create_join_table :photos, :albums do |t|
       t.index :photo_id
       t.index :album_id
+    end
   end
 end
