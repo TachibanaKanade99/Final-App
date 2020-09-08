@@ -73,7 +73,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
       address:              'smtp.gmail.com',
       port:                 25,
-      domain:               'gmail.com',
+      domain:               'heroku.com',
       user_name:            'tuan.minh5899@gmail.com',
       password:             '361975Warcraft',
       authentication:       'plain',
