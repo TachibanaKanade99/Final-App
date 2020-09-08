@@ -1,23 +1,22 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!, :find_user, only: [:edit, :show]
 
-	def new
-		@user = User.new
-	end
+	# def new
+	# 	@user = User.new
+	# end
 
-	def create
-		@user = User.create(user_params)
-		save = @user.save
-		if save
-			# UserMailer.with(user: @user).welcome_email.deliver_later
-			SendMailLaterJob.perform_later(@user)
-			render 'show'
-		else
-			puts @user.email
-			puts @user.errors.messages
-			redirect_to new_user_path
-		end
-	end
+	# def create
+	# 	@user = User.create(user_params)
+	# 	save = @user.save
+	# 	if save
+	# 		SendMailLaterJob.perform_later(@user)
+	# 		render 'show'
+	# 	else
+	# 		puts @user.email
+	# 		puts @user.errors.messages
+	# 		redirect_to new_user_path
+	# 	end
+	# end
 
 	def edit
 	end
@@ -35,10 +34,6 @@ class UsersController < ApplicationController
 
 		@following_users.each do |user| @following_albums += Album.joins(:user).where("albums.user_id = ? AND albums.sharing_mode = ?", user.id, "public") end
 		@following_albums = @following_albums.sort_by(&:created_at).reverse
-	end
-
-	def destroy
-		redirect_to root_path
 	end
 
 	def find_user

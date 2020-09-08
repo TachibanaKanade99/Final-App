@@ -2,6 +2,9 @@ class User < ApplicationRecord
 	# Devise modules
 	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :confirmable, :validatable, :timeoutable
 
+	# Callbacks
+	after_commit :send_welcome_mail
+
 	# Active Record Validation
 	validates :first_name, :last_name, length: {
 		maximum: 25,
@@ -44,4 +47,8 @@ class User < ApplicationRecord
 	# User has many likes
 	has_many :likes, dependent: :destroy
 
+	def send_welcome_mail
+		UserMailer.with(user: self).welcome_email.deliver_now		
+	end
+	
 end
