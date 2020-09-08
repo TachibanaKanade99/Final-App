@@ -28,7 +28,11 @@ a.disabled {
     color: gray;
     /* And disable the pointer events */
     pointer-events: none;
-  }
+}
+
+.error {
+    color: red;
+}
 
 /* .hmm {
     height: 220vh;
