@@ -61,6 +61,24 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "App_production"
 
   config.action_mailer.perform_caching = false
+  # Config for Devise using mailer
+  config.action_mailer.default_url_options = { host: 'rocky-bayou-90387.herokuapp.com'}
+
+  # Raise delivery error if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+
+  # mailer using Gmail
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      address:              'smtp.gmail.com',
+      port:                 25,
+      domain:               'gmail.com',
+      user_name:            'tuan.minh5899@gmail.com',
+      password:             '361975Warcraft',
+      authentication:       'plain',
+      enable_starttls_auto: true
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

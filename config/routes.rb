@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users do
-	  root 'devise/sessions#new'
+	  root to: 'devise/sessions#new'
   end
   # User
   resources :users do
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   root 'home#show'
+  # root 'devise/sessions#new'
 
   # Albums
   # namespace :albums do
