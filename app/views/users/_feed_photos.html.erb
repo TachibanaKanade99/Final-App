@@ -8,8 +8,8 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body text-center">
-				<%= image_tag("desktop.jpg", class: "img-fluid", alt: "Card image cap") %>
+			<div class="modal-body">
+				<%= image_tag("", class: "img-fluid", alt: "Card image cap") %>
 				<hr>
 				<p>Hmm</p>
 			</div>
@@ -24,12 +24,12 @@
 	<% if @user.followings.length != 0 %>
 		<% @following_photos.each do |photo| %>
 			<div class="col-12 col-md-6 p-3">
-				<div class="card border-light bg-light">
+				<div class="card h-100 border-light bg-light position-relative">
 					<div class="row py-0 card-body">
 						<% if photo.image_url == nil %>
 							<%= image_tag("desktop.jpg", class: "col-12 col-md-6 p-0 img-fluid img-thumbnail card-img", alt: "Card image cap") %>
 						<% else %>
-							<%= image_tag(photo.image_url.to_s, class: "col-12 col-md-6 p-0 img-fluid img-thumbnail card-img", alt: "Card image cap")%>
+							<%= image_tag(photo.image_url.to_s, class: "col-12 col-md-6 p-0 img-fluid img-thumbnail card-img mx-auto", alt: "Card image cap")%>
 						<% end %>
 
 						<div class="col-12 col-md-6">
@@ -39,12 +39,18 @@
 								<p><strong> <%= photo.title %> </strong></p>
 							</div>
 
-							<div class="card-body px-0">
+							<div class="card-body d-flex flex-column p-0">
 								<p class="card-text"> <%= photo.description %> </p>
 							</div>
-							<span><button class="heart-btn px-0" ><i class="fas fa-heart"></i></button></span>
-							<span class="like-numbers">112</span>
-							<span class="offset-md-2 font-italic ft-date"> <%= photo.created_at.localtime%> </span>
+							<div class="w-100 spaces">Some space</div>
+
+							<div class="row card-foot w-100">
+								<div class="col-3 col-md-3 pr-0">
+									<button class="heart-btn px-0"><i class="fas fa-heart"></i></button>
+									<span class="like-numbers">112</span>
+								</div>
+								<div class="col-9 col-md-9 font-italic ft-date mt-1"> <%= photo.created_at.localtime.to_s(:long)%> </div>
+							</div>
 						</div>
 					</div>
 				</div>

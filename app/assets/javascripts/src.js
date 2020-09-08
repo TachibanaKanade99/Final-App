@@ -48,7 +48,7 @@ $(document).ready(function() {
         src = $(this).attr("src")
         description = $(this).parent().children("div.col-md-6").children("div.card-body").children("p.card-text");
         // console.log(description.text());
-        created_at = $(this).parent().children("div.col-md-6").children("span.ft-date");
+        created_at = $(this).parent().children("div.col-md-6").children("div.card-foot").children("div.ft-date");
         // console.log(created_at.text());
 
         $(".modal-title").text(title.text());

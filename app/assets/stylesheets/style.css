@@ -19,7 +19,7 @@ nav[data-toggle="toc"] {
 }
 
 .card-img {
-	height: 300px;
+	height: 270px;
 	width: 200px;
 }
 
@@ -44,6 +44,15 @@ footer {
     /* position: absolute; */
     bottom: 0;
     width: 100%;
+}
+
+.spaces {
+    opacity: 0;
+}
+
+.card-foot {
+    position: absolute;
+    bottom: 0;
 }
 
 .ft-navbar {
@@ -193,7 +202,7 @@ footer {
 }
 
 .ft-date {
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .ft-imgs {
