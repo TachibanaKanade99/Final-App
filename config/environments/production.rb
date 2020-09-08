@@ -62,7 +62,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   # Config for Devise using mailer
-  config.action_mailer.default_url_options = { host: 'rocky-bayou-90387.herokuapp.com'}
+  config.action_mailer.default_url_options = { host: 'boiling-chamber-41549.herokuapp.com'}
 
   # Raise delivery error if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
@@ -72,7 +72,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       address:              'smtp.gmail.com',
-      port:                 587,
+      port:                 25,
       domain:               'gmail.com',
       user_name:            'tuan.minh5899@gmail.com',
       password:             '361975Warcraft',
