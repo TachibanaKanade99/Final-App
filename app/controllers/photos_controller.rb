@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+	before_action :find_user, only: [:new, :create]
+
 	def new
 		@photo = Photo.new
 	end
@@ -18,5 +20,9 @@ class PhotosController < ApplicationController
 	private
 		def user_params
 			params.require(:photo).permit(:title, :sharing_mode, :image, :description, :user_id)
+		end
+
+		def find_user
+			@user = User.find(params[:user_id])
 		end
 end

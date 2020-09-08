@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.3.0/dist/bootstrap-toc.min.css">
 	<%= stylesheet_link_tag 'style' %>
 
-	<title>Fotobook - Tab Photos</title>
+	<title></title>
 </head>
 <body data-spy="scroll" data-target="#toc" class="ft-mainpage">
 
@@ -41,7 +41,7 @@
 		</div>
 
 		<div class="col-xs-6 col-md-2 text-center">
-			<a class="navbar-brand font-weight-bold ft-login" href="#">Logout</a>
+			<%= link_to("Logout", destroy_user_session_path, method: "delete", class: "navbar-brand font-weight-bold ft-login") %>
 		</div>
 	</div>
 </nav>

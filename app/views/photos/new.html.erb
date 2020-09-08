@@ -34,14 +34,14 @@
 		</div>
 
 		<div class="col-xs-6 col-md-1 text-center">
-			<a class="navbar-brand" href="#">
-				<%= image_tag("tuanminh.png", class: "img-fluid rounded-circle ft-avatar", alt: "user-avatar") %>
-				<span class="font-weight-bold ft-login" href="#">Tuan Minh</span>
-			</a>
+			<%= link_to(edit_user_path(id: @user.id), class: "navbar-brand") do  %>
+				<%= image_tag("tuanminh.png", class: "img-fluid rounded-circle ft-avatar") %>
+				<span class="font-weight-bold ft-login" href="#"> <%= @user.first_name %> <%=@user.last_name %> </span>
+			<% end %>
 		</div>
 
 		<div class="col-xs-6 col-md-2 text-center">
-			<a class="navbar-brand font-weight-bold ft-login" href="#">Logout</a>
+			<%= link_to("Logout", destroy_user_session_path, method: "delete", class: "navbar-brand font-weight-bold ft-login") %>
 		</div>
 	</div>
 </nav>
@@ -141,7 +141,8 @@
 				<div class="row pl-3">
 					<div class="image">
 						<div class="col-xs-12 col-md-12 mt-2 btn photo-btn">
-							<input type="file" class="file-input" multiple>
+							<%# <input type="file" class="file-input" multiple> %>
+							<%= p.file_field :image, class: "file-input"%>
 							<i class="fas fa-3x fa-plus p-4"></i>
 						</div>
 					</div>
@@ -195,5 +196,6 @@
 <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.3.0/dist/bootstrap-toc.min.js"></script>
 
 <!--<script src="src.js"></script>-->
+<%= javascript_include_tag 'src' %>
 </body>
 </html>
