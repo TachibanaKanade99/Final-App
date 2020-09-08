@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 	  root to: 'devise/sessions#new'
   end
   # User
-  resources :users do
+  resources :users, only: [:edit, :show] do
     resources :albums
     resources :photos
   end
