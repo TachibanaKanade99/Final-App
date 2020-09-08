@@ -67,6 +67,8 @@
 				<img class="profile-img mt-4" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
 
 				<%= form_for(resource, as: resource_name, url: session_path(resource_name), local: true, :html => {:class => "form-signin"}) do |u| %>
+					<%= render "users/shared/error_messages", resource: resource %>
+
 					<%= u.email_field :email, autofocus: true, autocomplete: "email", value: "", placeholder: "Email", class: "form-control"%>
 
 					<br>
