@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :authenticate_user!, :find_user, only: [:edit, :show, :feeds, :show]
+	before_action :authenticate_user!, :find_user, only: [:edit, :show, :feeds, :discover]
 
 	# def new
 	# 	@user = User.new
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 		@discover_albums = []
 
 		@users.each do |user|
-			@discover_photos += Album.joins(:user).where("photos.user_id = ? AND photos.sharing_mode = ?", user.id, "public")
+			@discover_photos += Photo.joins(:user).where("photos.user_id = ? AND photos.sharing_mode = ?", user.id, "public")
 		end
 		@discover_photos = @discover_photos.sort_by(&:created_at).reverse
 

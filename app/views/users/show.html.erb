@@ -52,10 +52,11 @@
 			<nav class="sticky-top text-center" id="toc" data-toggle="toc">
 				<ul class="nav navbar-nav">
 					<%# <button type="button" class="btn shadow-none p-0 content-text">Feeds</button> %>
-					<%= link_to("Feeds", user_feeds_path(user_id: params[:id]), method: "get", class: "btn shadow-none p-0 content-text", type: "button") %>
+					<%= link_to("Feeds", user_feeds_path(user_id: params[:id], status: 'photo'), method: "get", class: "btn shadow-none p-0 content-text", type: "button") %>
 				</ul>
 				<ul class="nav navbar-nav">
-					<button type="button" class="btn shadow-none p-0 content-text">Discovery</button>
+					<%# <button type="button" class="btn shadow-none p-0 content-text">Discovery</button> %>
+					<%= link_to("Discover", user_discover_path(user_id: params[:id], status: 'photo'), method: "get", class: "btn shadow-none p-0 content-text", type: "button") %>
 				</ul>
 			</nav>
 		</div>

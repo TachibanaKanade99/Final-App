@@ -11,9 +11,14 @@ Rails.application.routes.draw do
 	resources :users, only: [:edit, :show] do
 		resources :albums, only: [:new, :create, :edit, :show, :destroy]
 		resources :photos, only: [:new, :create, :edit, :show, :destroy]
-
+		
+		# User feeds
 		get 'feeds'
+		get 'feeds/:status', to: 'users#feeds'
+
+		# User discover
 		get 'discover'
+		get 'discover/:status', to: 'users#discover'
 	end
 
 	# Admin

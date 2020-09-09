@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
 	def after_sign_in_path_for(resource_or_scope)
 		# your_path
-		user_feeds_path(current_user.id)
+		user_feeds_path(current_user.id, status: 'photo')
 	end
 
 	def after_sign_out_path_for(resource_or_scope)
