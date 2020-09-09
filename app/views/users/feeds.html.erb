@@ -51,12 +51,10 @@
 		<div class="col-xs-1 col-md-2 mt-5">
 			<nav class="sticky-top text-center" id="toc" data-toggle="toc">
 				<ul class="nav navbar-nav">
-					<%# <button type="button" class="btn shadow-none p-0 content-text content-text-active">Feeds</button> %>
 					<%= link_to("Feeds", user_feeds_path(user_id: @user.id, status: 'photo'), method: "get", class: "btn shadow-none p-0 content-text content-text-active", type: "button") %>
 				</ul>
 
 				<ul class="nav navbar-nav">
-					<%# <button type="button" class="btn shadow-none p-0 content-text">Discovery</button> %>
 					<%= link_to("Discover", user_discover_path(user_id: @user.id, status: 'photo'), method: "get", class: "btn shadow-none p-0 content-text", type: "button") %>
 				</ul>
 			</nav>
@@ -65,40 +63,10 @@
 		<main class="col-xs-6 col-md-8 bg-white mt-3 hmm">
 			
 			<% if params[:status] == 'photo' %>
-				<div class="row">
-					<div class="btn-group mx-auto m-3">
-						<%# <button type="button" class="btn ft-button active">
-							PHOTO
-						</button> %>
-						<%= link_to('PHOTO', user_feeds_path(status: 'photo'), class: "btn ft-button active", type: "button") %>
-
-						<%# <button type="button" class="btn ft-button">
-							ALBUM
-						</button> %>
-						<%= link_to('ALBUM', user_feeds_path(status: 'album'), class: "btn ft-button", type: "button") %>
-					</div>
-				</div>
-
 				<%= render "feed_photos", users: @user.followings, photos: @following_photos %>
 			<% else %>
-				<div class="row">
-					<div class="btn-group mx-auto m-3">
-						<%# <button type="button" class="btn ft-button active">
-							PHOTO
-						</button> %>
-						<%= link_to('PHOTO', user_feeds_path(status: 'photo'), class: "btn ft-button", type: "button") %>
-
-						<%# <button type="button" class="btn ft-button">
-							ALBUM
-						</button> %>
-						<%= link_to('ALBUM', user_feeds_path(status: 'album'), class: "btn ft-button active", type: "button") %>
-					</div>
-				</div>
-
-				<%# <%= render "feed_albums" %>
+				<%= render "feed_albums", users: @user.followings, albums: @followings_albums %>
 			<% end %>
-			<%# <%= render "feed_photos", users: @user.followings, photos: @following_photos %>
-			<%#= render "feed_albums" %>
 
 			<div class="d-flex justify-content-center">
 				<div class="spinner-border" role="status">
