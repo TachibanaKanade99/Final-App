@@ -28,7 +28,7 @@ class Album < ApplicationRecord
 
 	# Active Record Association
 
-	belongs_to :user
+	belongs_to :user, counter_cache: true
 	has_and_belongs_to_many :photos
 
 	has_many :likes, as: :likeable
