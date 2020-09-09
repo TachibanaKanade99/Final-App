@@ -1,38 +1,34 @@
 Rails.application.routes.draw do
-  devise_for :users do
-	  root to: 'devise/sessions#new'
-  end
-  # User
-  resources :users, only: [:edit, :show] do
-    resources :albums
-    resources :photos
-  end
+	devise_for :users do
+		root to: 'devise/sessions#new'
+	end
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+	# For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  # Resourceful
+	# Resourceful
 
-  # Admin
-  namespace :admin do
-  	resources :users, :photos, :albums, only: [:show, :edit, :update, :destroy]
-  end
+	# User
+	resources :users, only: [:edit, :show] do
+		resources :albums, only: [:new, :create, :edit, :show, :destroy]
+		resources :photos, only: [:new, :create, :edit, :show, :destroy]
 
-  root 'home#show'
-  # root 'devise/sessions#new'
+		get 'feeds'
+		get 'discover'
+	end
 
-  # Albums
-  # namespace :albums do
-  #   resources :photos, only: [:edit, :update, :show, :destory]
-  # end
-  # resources :albums
-  # resources :users, only: [:new, :create, :show]
+	# Admin
+	namespace :admin do
+		resources :users, :photos, :albums, only: [:show, :edit, :update, :destroy]
+	end
 
-  # Non-resourceful
-  # Signup
-  # root 'users#new'
-  # post 'users/new', to: 'users#create'
-  #Signin
-  # root 'home#create'
-  # get '/exit', to: 'session#destroy', as: :logout
+	
+	root 'users#feeds'
+
+	# Albums
+	# namespace :albums do
+	#   resources :photos, only: [:edit, :update, :show, :destory]
+	# end
+	# resources :albums
+	# resources :users, only: [:new, :create, :show]
 
 end

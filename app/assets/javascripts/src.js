@@ -89,18 +89,18 @@ $(document).ready(function() {
     });
 
     // Feed - Discovery Button
-    selected_btn = $(".sticky-top").children().children("button.btn")
-    // console.log(selected_btn.text())
-    selected_btn.on({
-        click: function () {
-            $(this).addClass("content-text-active")
-            // console.log($(this).text())
-            // console.log($(selected_btn).not(this).text())
-            if (selected_btn.not(this).hasClass("content-text-active")) {
-                selected_btn.not(this).removeClass("content-text-active")
-            }
-        }
-    });
+    // selected_btn = $(".sticky-top").children().children("button.btn")
+    // // console.log(selected_btn.text())
+    // selected_btn.on({
+    //     click: function () {
+    //         $(this).addClass("content-text-active")
+    //         // console.log($(this).text())
+    //         // console.log($(selected_btn).not(this).text())
+    //         if (selected_btn.not(this).hasClass("content-text-active")) {
+    //             selected_btn.not(this).removeClass("content-text-active")
+    //         }
+    //     }
+    // });
 
     // Image Preview
 
