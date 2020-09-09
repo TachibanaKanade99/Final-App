@@ -76,12 +76,12 @@ $(document).ready(function() {
     });
 
     // Album and Photo Button
-    selected_btn = $(".btn-group").children("button")
+    selected_btn = $(".btn-group").children()
     selected_btn.on({
         click: function () {
             $(this).addClass("active");
             console.log($(this).text());
-            console.log(selected_btn.not(this));
+            console.log(selected_btn.not(this).text());
             if (selected_btn.not(this).hasClass("active")) {
                 selected_btn.not(this).removeClass("active");
             }

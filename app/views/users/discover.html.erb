@@ -52,7 +52,7 @@
 			<nav class="sticky-top text-center" id="toc" data-toggle="toc">
 				<ul class="nav navbar-nav">
 					<%# <button type="button" class="btn shadow-none p-0 content-text content-text-active">Feeds</button> %>
-					<%= link_to("Feeds", user_feeds_path, method: "get", class: "btn shadow-none p-0 content-text", type: "button") %>
+					<%= link_to("Feeds", user_feeds_path(status: 'photo'), method: "get", class: "btn shadow-none p-0 content-text", type: "button") %>
 				</ul>
 
 				<ul class="nav navbar-nav">
@@ -63,23 +63,38 @@
 		</div>
 
 		<main class="col-xs-6 col-md-8 bg-white mt-3 hmm">
-			<div class="row">
-				<div class="btn-group mx-auto m-3">
-					<%# <button type="button" class="btn ft-button active">
-						PHOTO
-					</button> %>
-					<%= link_to('PHOTO', user_discover_path(status: 'photo'), class: "btn ft-button", type: "button") %>
-
-					<%# <button type="button" class="btn ft-button">
-						ALBUM
-					</button> %>
-					<%= link_to('ALBUM', user_discover_path(status: 'album'), class: "btn ft-button", type: "button") %>
-				</div>
-			</div>
 
 			<% if params[:status] == 'photo' %>
+				<div class="row">
+					<div class="btn-group mx-auto m-3">
+						<%# <button type="button" class="btn ft-button active">
+							PHOTO
+						</button> %>
+						<%= link_to('PHOTO', user_discover_path(status: 'photo'), class: "btn ft-button active", type: "button") %>
+
+						<%# <button type="button" class="btn ft-button">
+							ALBUM
+						</button> %>
+						<%= link_to('ALBUM', user_discover_path(status: 'album'), class: "btn ft-button", type: "button") %>
+					</div>
+				</div>
+
 				<%= render "discover_photos", users: @users, photos: @discover_photos %>
 			<% else %>
+				<div class="row">
+					<div class="btn-group mx-auto m-3">
+						<%# <button type="button" class="btn ft-button active">
+							PHOTO
+						</button> %>
+						<%= link_to('PHOTO', user_discover_path(status: 'photo'), class: "btn ft-button", type: "button") %>
+
+						<%# <button type="button" class="btn ft-button">
+							ALBUM
+						</button> %>
+						<%= link_to('ALBUM', user_discover_path(status: 'album'), class: "btn ft-button active", type: "button") %>
+					</div>
+				</div>
+
 				<%# <%= render "feed_albums" %> 
 			<% end %>
 			<%# <%= render "discover_photos", users: @users, photos: @discover_photos %>
