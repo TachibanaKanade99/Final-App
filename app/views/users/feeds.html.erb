@@ -70,12 +70,12 @@
 						<%# <button type="button" class="btn ft-button active">
 							PHOTO
 						</button> %>
-						<%= link_to('PHOTO', user_discover_path(status: 'photo'), class: "btn ft-button active", type: "button") %>
+						<%= link_to('PHOTO', user_feeds_path(status: 'photo'), class: "btn ft-button active", type: "button") %>
 
 						<%# <button type="button" class="btn ft-button">
 							ALBUM
 						</button> %>
-						<%= link_to('ALBUM', user_discover_path(status: 'album'), class: "btn ft-button", type: "button") %>
+						<%= link_to('ALBUM', user_feeds_path(status: 'album'), class: "btn ft-button", type: "button") %>
 					</div>
 				</div>
 
@@ -86,16 +86,16 @@
 						<%# <button type="button" class="btn ft-button active">
 							PHOTO
 						</button> %>
-						<%= link_to('PHOTO', user_discover_path(status: 'photo'), class: "btn ft-button", type: "button") %>
+						<%= link_to('PHOTO', user_feeds_path(status: 'photo'), class: "btn ft-button", type: "button") %>
 
 						<%# <button type="button" class="btn ft-button">
 							ALBUM
 						</button> %>
-						<%= link_to('ALBUM', user_discover_path(status: 'album'), class: "btn ft-button active", type: "button") %>
+						<%= link_to('ALBUM', user_feeds_path(status: 'album'), class: "btn ft-button active", type: "button") %>
 					</div>
 				</div>
 
-				<%= render "feed_albums" %>
+				<%# <%= render "feed_albums" %>
 			<% end %>
 			<%# <%= render "feed_photos", users: @user.followings, photos: @following_photos %>
 			<%#= render "feed_albums" %>
