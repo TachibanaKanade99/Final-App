@@ -1,23 +1,6 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!, :find_user, only: [:edit, :show, :feeds, :discover]
 
-	# def new
-	# 	@user = User.new
-	# end
-
-	# def create
-	# 	@user = User.create(user_params)
-	# 	save = @user.save
-	# 	if save
-	# 		SendMailLaterJob.perform_later(@user)
-	# 		render 'show'
-	# 	else
-	# 		puts @user.email
-	# 		puts @user.errors.messages
-	# 		redirect_to new_user_path
-	# 	end
-	# end
-
 	def edit
 	end
 
@@ -67,9 +50,4 @@ class UsersController < ApplicationController
 	def find_user
 		@user = current_user
 	end
-
-	# private
-	# 	def user_params
-	# 		params.require(:user).permit(:first_name, :last_name, :email, :password)
-	# 	end
 end

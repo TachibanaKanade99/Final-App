@@ -93,7 +93,6 @@
 			</div>
 			
 			<div class="float-md-right">
-<!--			<button type="button" class="btn btn-sm m-3 px-3 btn-success">Add Photo</button>-->
 				<%= link_to("Add Photo", new_user_photo_path(user_id: @user.id), class: "btn btn-sm m-3 px-3 btn-success")%>
 			</div>
 
@@ -105,7 +104,6 @@
 								<% @user.photos.each do |photo| %>
 									<div class="col-12 col-md-3 my-2 mx-0 p-0">
 										<div class="col-md-12 p-0 text-center">
-											<%# <img class="img-fluid ft-imgs" src="5wgCcaI.gif" alt="photo"> %>
 											<% if photo.image.url == nil %>
 												<%= image_tag('desktop.jpg', class: "img-fluid ft-imgs", alt: "photo") %>
 											<% else %>
