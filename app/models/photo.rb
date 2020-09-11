@@ -30,7 +30,7 @@ class Photo < ApplicationRecord
 	# Active Record Association
 
 	belongs_to :user, counter_cache: true
-	has_and_belongs_to_many :albums
+	# belongs_to :album, counter_cache: true
 
 	has_many :likes, as: :likeable
 	

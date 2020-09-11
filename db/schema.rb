@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_031147) do
+ActiveRecord::Schema.define(version: 2020_09_11_073521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,13 +23,6 @@ ActiveRecord::Schema.define(version: 2020_09_09_031147) do
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.index ["user_id"], name: "index_albums_on_user_id"
-  end
-
-  create_table "albums_photos", id: false, force: :cascade do |t|
-    t.bigint "photo_id", null: false
-    t.bigint "album_id", null: false
-    t.index ["album_id"], name: "index_albums_photos_on_album_id"
-    t.index ["photo_id"], name: "index_albums_photos_on_photo_id"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -55,6 +48,8 @@ ActiveRecord::Schema.define(version: 2020_09_09_031147) do
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.string "image"
+    t.bigint "album_id"
+    t.index ["album_id"], name: "index_photos_on_album_id"
     t.index ["user_id"], name: "index_photos_on_user_id"
   end
 
@@ -74,8 +69,9 @@ ActiveRecord::Schema.define(version: 2020_09_09_031147) do
     t.string "unconfirmed_email"
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.integer "photos_count"
-    t.integer "albums_count"
+    t.integer "photos_count", default: 0
+    t.integer "albums_count", default: 0
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["first_name"], name: "index_users_on_first_name"
     t.index ["last_name"], name: "index_users_on_last_name"
@@ -84,5 +80,6 @@ ActiveRecord::Schema.define(version: 2020_09_09_031147) do
 
   add_foreign_key "albums", "users"
   add_foreign_key "likes", "users"
+  add_foreign_key "photos", "albums"
   add_foreign_key "photos", "users"
 end
