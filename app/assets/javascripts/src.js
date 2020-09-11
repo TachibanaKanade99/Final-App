@@ -82,17 +82,17 @@ $(document).ready(function() {
     });
 
     // Album and Photo Button
-    selected_btn = $(".btn-group").children()
-    selected_btn.on({
-        click: function () {
-            $(this).addClass("active");
-            console.log($(this).text());
-            console.log(selected_btn.not(this).text());
-            if (selected_btn.not(this).hasClass("active")) {
-                selected_btn.not(this).removeClass("active");
-            }
-        }
-    });
+    // selected_btn = $(".btn-group").children()
+    // selected_btn.on({
+    //     click: function () {
+    //         $(this).addClass("active");
+    //         console.log($(this).text());
+    //         console.log(selected_btn.not(this).text());
+    //         if (selected_btn.not(this).hasClass("active")) {
+    //             selected_btn.not(this).removeClass("active");
+    //         }
+    //     }
+    // });
 
     // Feed - Discovery Button
     // selected_btn = $(".sticky-top").children().children("button.btn")
@@ -109,5 +109,25 @@ $(document).ready(function() {
     // });
 
     // Image Preview
-
+    $(".file-input").change(function(){
+		readURL(this);
+	});
+	$(".close-btn").on("click", function() {
+		$(".image-preview").addClass("d-none");
+		$(".image").removeClass("d-none");
+	})
 });
+
+function readURL(input) {
+	if (input.files && input.files[0]) {
+		  var reader = new FileReader();
+	  
+		reader.onload = function(e) {
+			$(".img-preview").attr("src", e.target.result);
+			$(".image").addClass("d-none");
+			$(".image-preview").removeClass("d-none");
+		}
+		
+		reader.readAsDataURL(input.files[0]); // convert to base64 string
+	}
+}

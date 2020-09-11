@@ -21,7 +21,7 @@
 
 		<div class="col-xs-6 col-md-1 text-center">
 			<%= link_to(user_path(id: current_user.id), class: "navbar-brand") do  %>
-				<%= image_tag("tuanminh.png", class: "img-fluid rounded-circle ft-avatar") %>
+				<%= image_tag(current_user.avatar.url, class: "img-fluid rounded-circle ft-avatar") %>
 				<span class="font-weight-bold ft-login" href="#"> <%= current_user.first_name %> <%=current_user.last_name %> </span>
 			<% end %>
 		</div>
@@ -83,6 +83,12 @@
 							<%= p.file_field :image, class: "file-input"%>
 							<i class="fas fa-3x fa-plus p-4"></i>
 						</div>
+					</div>
+					<div class="image-preview d-none">
+						<img src="#" class="img-fluids ft-imgs img-preview">
+						<button type="button" class="close close-btn" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
 				</div>
 

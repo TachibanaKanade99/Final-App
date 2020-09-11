@@ -81,27 +81,30 @@
 				</div>
 			</div>
 			
-			<div class="float-md-right">
-				<%= link_to("Add Photo", new_user_photo_path(user_id: current_user.id), class: "btn btn-sm m-3 px-3 btn-success")%>
+			<div class="row">
+				<div class="offset-7 offset-md-10">
+					<%= link_to("Add Photo", new_user_photo_path(user_id: current_user.id), class: "btn btn-sm m-3 px-3 btn-success")%>
+				</div>
 			</div>
 
-			<div class="row mt-5">
-				<div class="col-md-1 p-0"></div>
-				<div class="col-12 col-md-11">
-					<div class="row mt-5">
+			<div class="row mt-5 d-flex">
+				<div class="col-md-1"></div>
+				<div class="col-md-11">
+					<div class="row">
 						<% if current_user.photos.size != 0 %>
-								<% current_user.photos.each do |photo| %>
-									<div class="col-12 col-md-3 my-2 mx-0 p-0">
-										<div class="col-md-12 p-0 text-center">
-											<% if photo.image.url == nil %>
-												<%= image_tag('desktop.jpg', class: "img-fluid ft-imgs", alt: "photo") %>
-											<% else %>
-												<%= image_tag(photo.image.url, class: "img-fluid ft-imgs", alt: "photo") %>
-											<% end %>
-										</div>
-										<figcaption class="text-center small text-secondary border-0"> <%= photo.title %> </figcaption>
+							<% current_user.photos.each do |photo| %>
+								
+								<div class="col-6 col-md-2 mx-4 p-0">
+									<div class="col-12 col-md-12 p-0">
+										<% if photo.image.url == nil %>
+											<%= image_tag('desktop.jpg', class: "img-fluid ft-imgs", alt: "photo") %>
+										<% else %>
+											<%= image_tag(photo.image.url, class: "img-fluid ft-imgs", alt: "photo") %>
+										<% end %>
 									</div>
-								<% end %>
+									<figcaption class="text-center small text-secondary border-0"> <%= photo.title %> </figcaption>
+								</div>
+							<% end %>
 						<% else %>
 							<div class="col-12 col-md-12">
 								<p class="text-center text-blue">You have not add any photos yet! Add one</p>
