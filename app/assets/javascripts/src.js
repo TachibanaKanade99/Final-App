@@ -39,7 +39,13 @@ $(document).ready(function() {
 		// errorPlacement: function(error, element){
 		// 	error.appendTo($(element).next())
 		// }
-	});
+    });
+    
+    // Files Btn
+    $(".change-btn.btn-secondary").change(function() {
+        filename = this.files[0].name
+        console.log(filename);
+    });
 
     //Photo Modal
     $(".card-img").bind("click", function (){

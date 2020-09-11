@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="btn-group mx-auto m-3">
-		<%= link_to('PHOTO', user_feeds_path(user_id: @user.id, status: 'photo'), class: "btn ft-button", type: "button") %>
-		<%= link_to('ALBUM', user_feeds_path(user_id: @user.id, status: 'album'), class: "btn ft-button active", type: "button") %>
+		<%= link_to('PHOTO', user_feeds_path(user_id: current_user.id, status: 'photo'), class: "btn ft-button", type: "button") %>
+		<%= link_to('ALBUM', user_feeds_path(user_id: current_user.id, status: 'album'), class: "btn ft-button active", type: "button") %>
 	</div>
 </div>
 
@@ -49,8 +49,8 @@
 </div>
 
 <div class="row">
-	<% if @user.followings.length != 0 %>
-		<% @following_albums.each do |album| %>
+	<% if users.length != 0 %>
+		<% albums.each do |album| %>
 			<div class="col-xs-12 col-md-6 p-3">
 				<div class="card bg-light border-light ml-2">
 					<div class="row py-0 px-2">
@@ -62,7 +62,7 @@
 
 						<div class="col-xs-12 col-md-6 pl-4">
 							<div class="card-title">
-								<%image_tag("tuanminh.png", class: "img-fluid rounded-circle ft-avatar", alt: "user-avatar") %>
+								<%image_tag(current_user.avatar.url, class: "img-fluid rounded-circle ft-avatar", alt: "user-avatar") %>
 								<span class="font-weight-bold ft-login" href="#"> <%=album.user.first_name %> <%= album.user.last_name%> </span>
 								<p><strong> <%= album.title %> </strong></p>
 							</div>

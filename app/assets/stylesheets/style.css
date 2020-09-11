@@ -248,13 +248,14 @@ footer {
 }
 
 .ft-avatar {
-    height: 32px;
+    background-color: #3C5999;
+    height: 30px;
     width: 30px;
 }
 
 .ft-profile-img {
-    height: 120px;
-    width: 120px;
+    height: 140px;
+    width: 140px;
 }
 
 .count_albums {

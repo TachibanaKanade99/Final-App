@@ -5,7 +5,7 @@
 <body data-spy="scroll" data-target="#toc" class="ft-mainpage">
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark ft-navbar">
-	<div class="col-xs-1 col-md-1 offset-md-1 text-center">
+	<div class="col-xs-1 col-md-2 text-center">
 		<a class="navbar-brand ft-name font-weight-bold" href="#">Fotobook</a>
 	</div>
 
@@ -21,10 +21,11 @@
 		</div>
 
 		<div class="col-xs-6 col-md-1 text-center">
-			<a class="navbar-brand" href="#">
-				<%= image_tag("tuanminh.png", class: "img-fluid rounded-circle ft-avatar", alt: "user-avatar") %>
-				<span class="font-weight-bold ft-login"> <%= @user.first_name %> <%= @user.last_name%> </span>
-			</a>
+			<%= link_to(user_path(id: current_user.id), class: "navbar-brand") do  %>
+				<%# image_tag("tuanminh.png", class: "img-fluid rounded-circle ft-avatar") %>
+				<%= image_tag(current_user.avatar.url, class: "img-fluid rounded-circle ft-avatar") %>
+				<span class="font-weight-bold ft-login" href="#"> <%= current_user.first_name %> <%=current_user.last_name %> </span>
+			<% end %>
 		</div>
 
 		<div class="col-xs-6 col-md-2 text-center">
@@ -49,46 +50,47 @@
 		<main class="col-xs-6 col-md-8 bg-white mt-3 hmm">
 
 			<div class="row justify-content-center">
-				<div class="col-5 col-md-2 pt-4 pl-4">
-					<%= image_tag("profile.png", class: "img-fluid ft-profile-img", alt: "profile-avatar") %>
+				<div class="col-5 col-md-2 pt-4 pl-4 pr-0">
+					<%= image_tag(current_user.avatar.url, class: "img-fluid rounded-circle ft-profile-img", alt: "profile-avatar") %>
 				</div>
 
 				<div class="col-7 col-md- p-0">
-					<a href="#" class="badge badge-pill bg-white text-blue font-weight-bold px-3 pt-1 mt-4 ml-1 border border-primary">Edit Profile</a>
+					<%= link_to('Edit Profile', edit_user_path, class: "badge badge-pill bg-white text-blue font-weight-bold px-3 pt-1 mt-4 ml-1 border border-primary") %>
+
 					<a href="#">
-						<p class="pt-3 pl-2 h1 text-dark font-weight-bolder"> <%= @user.first_name%> <%= @user.last_name%></p>
+						<p class="pt-3 pl-2 h1 text-dark font-weight-bolder"> <%= current_user.first_name%> <%= current_user.last_name%></p>
 					</a>
 
 					<div class="row px-3">
 						<div class="col-10 col-md-3 border-right border-secondary">
-							<a class="photo-text font-weight-bold"> <%= @user.photos.size %> <small>PHOTOS</small></a>
+							<a class="photo-text font-weight-bold"> <%= current_user.photos.size %> <small>PHOTOS</small></a>
 						</div>
 
 						<div class="col-10 col-md-3 border-right border-secondary">
-							<a class="photo-text font-weight-bold "> <%= @user.albums.size %> <small>ALBUMS</small></a>
+							<a class="photo-text font-weight-bold "> <%= current_user.albums.size %> <small>ALBUMS</small></a>
 						</div>
 
 						<div class="col-10 col-md-3 border-right border-secondary">
-							<a class="photo-text font-weight-bold "> <%= @user.followings.size%> <small>FOLLOWINGS</small></a>
+							<a class="photo-text font-weight-bold "> <%= current_user.followings.size%> <small>FOLLOWINGS</small></a>
 						</div>
 
 						<div class="col-10 col-md-3 border-right border-secondary">
-							<a class="photo-text font-weight-bold "> <%= @user.followers.size %> <small>FOLLOWERS</small></a>
+							<a class="photo-text font-weight-bold "> <%= current_user.followers.size %> <small>FOLLOWERS</small></a>
 						</div>
 					</div>
 				</div>
 			</div>
 			
 			<div class="float-md-right">
-				<%= link_to("Add Photo", new_user_photo_path(user_id: @user.id), class: "btn btn-sm m-3 px-3 btn-success")%>
+				<%= link_to("Add Photo", new_user_photo_path(user_id: current_user.id), class: "btn btn-sm m-3 px-3 btn-success")%>
 			</div>
 
 			<div class="row mt-5">
 				<div class="col-md-1 p-0"></div>
 				<div class="col-12 col-md-11">
 					<div class="row mt-5">
-						<% if @user.photos.size != 0 %>
-								<% @user.photos.each do |photo| %>
+						<% if current_user.photos.size != 0 %>
+								<% current_user.photos.each do |photo| %>
 									<div class="col-12 col-md-3 my-2 mx-0 p-0">
 										<div class="col-md-12 p-0 text-center">
 											<% if photo.image.url == nil %>
