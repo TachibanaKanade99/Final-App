@@ -1,20 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<!-- Google Roboto Font -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-	<!-- add after bootstrap.min.css -->
-	<link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.3.0/dist/bootstrap-toc.min.css">
-	<%= stylesheet_link_tag 'style' %>
-
-	<title></title>
-</head>
+<head></head>
 <body data-spy="scroll" data-target="#toc" class="ft-mainpage">
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark ft-navbar">
@@ -34,7 +20,7 @@
 		</div>
 
 		<div class="col-xs-6 col-md-1 text-center">
-			<%= link_to(edit_user_path(id: @user.id), class: "navbar-brand") do  %>
+			<%= link_to(user_path(id: @user.id), class: "navbar-brand") do  %>
 				<%= image_tag("tuanminh.png", class: "img-fluid rounded-circle ft-avatar") %>
 				<span class="font-weight-bold ft-login" href="#"> <%= @user.first_name %> <%=@user.last_name %> </span>
 			<% end %>
@@ -68,7 +54,7 @@
 			</div>
 			<hr>
 
-			<%= form_with model: [:user, @photo] do |p| %>
+			<%= form_with model: [@user, @photo] do |p| %>
 				<div class="form-row">
 					<div class="form-group col-md-5">
 						<%= p.label :title, "Title"%>
@@ -94,7 +80,6 @@
 				<div class="row pl-3">
 					<div class="image">
 						<div class="col-xs-12 col-md-12 mt-2 btn photo-btn">
-							<%# <input type="file" class="file-input" multiple> %>
 							<%= p.file_field :image, class: "file-input"%>
 							<i class="fas fa-3x fa-plus p-4"></i>
 						</div>
@@ -107,9 +92,11 @@
 
 				<div>
 					<% flash.each do |type, msg| %>
-						<div class="alert alert-info">
-							<%= msg %>
-						</div>
+						<% if msg != "Signed in successfully."%>
+							<div class="alert alert-info">
+								<%= msg %>
+							</div>
+						<% end %>
 					<% end %>
 				</div>
 			<% end %>
@@ -134,21 +121,5 @@
 
 </div>
 
-
-
-<!-- Font Awesome -->
-<script src="https://kit.fontawesome.com/1fb1fb2be8.js" crossorigin="anonymous"></script>
-
-<!-- Optional JavaScript -->
-
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<!-- add after bootstrap.min.js -->
-<script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v0.3.0/dist/bootstrap-toc.min.js"></script>
-
-<!--<script src="src.js"></script>-->
-<%= javascript_include_tag 'src' %>
 </body>
 </html>

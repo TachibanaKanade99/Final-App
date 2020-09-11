@@ -45,9 +45,9 @@
 								<span class="font-weight-bold ft-login" href="#"> <%= photo.user.first_name %> <%= photo.user.last_name %> </span>
 								
 								<% if @user.followings.include? photo.user%>
-									<button type="button" class="ml-3 btn active-follow follow-btn">following</button>
+									<button type="button" class="ml-1 btn active-follow follow-btn">following</button>
 								<% else %>
-									<button type="button" class="ml-3 btn follow-btn">follow</button>
+									<button type="button" class="ml-1 btn follow-btn">follow</button>
 								<% end %>
 
 								<p><strong> <%= photo.title %> </strong></p>
