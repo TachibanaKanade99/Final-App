@@ -1,5 +1,4 @@
 class PhotosController < ApplicationController
-	before_action :find_user, only: [:new, :create]
 
 	def new
 		@photo = Photo.new
@@ -9,8 +8,8 @@ class PhotosController < ApplicationController
 		# byebug
 		@photo = Photo.create(photo_params)
 		if @photo.valid?
-			flash[:success] = "Save Successfully!"
-			redirect_to user_path(id: @user.id)
+			# flash[:success] = "Save Successfully!"
+			redirect_to user_path(id: current_user.id)
 		else
 			flash[:error] = @photo.errors.messages
 			redirect_to new_user_photo_path
@@ -18,11 +17,9 @@ class PhotosController < ApplicationController
 	end
 
 	private
-		def photo_params
-			params.require(:photo).permit(:title, :sharing_mode, :image, :description, :user_id)
-		end
 
-		def find_user
-			@user = current_user
-		end
+	def photo_params
+		params.require(:photo).permit(:title, :sharing_mode, :image, :description, :user_id)
+	end
+		
 end

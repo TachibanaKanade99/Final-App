@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 	# Resourceful
 
 	# User
-	resources :users, only: [:edit, :show] do
+	resources :users, only: [:edit, :show, :update] do
 		resources :albums, only: [:new, :create, :edit, :show, :destroy]
 		resources :photos, only: [:new, :create, :edit, :show, :destroy]
 		
