@@ -121,9 +121,8 @@ footer {
     color: orange;
     border: 1px solid orange;
     border-radius: 14px;
-    padding: 1px 12px;
+    padding: 1px 7px;
     font-size: 12px;
-    size: 1px;
 }
 
 .follow-btn:hover {
@@ -131,17 +130,8 @@ footer {
     background-color: orange;
     border: 1px solid orange;
     border-radius: 14px;
-    padding: 1px 12px;
+    padding: 1px 7px;
     font-size: 12px;
-    size: 1px;
-}
-
-.change-btn {
-    position: absolute;
-    bottom: 5%;
-    left: 0;
-    right: 0;
-    text-align: center;  
 }
 
 .active-follow {
@@ -149,9 +139,17 @@ footer {
     background-color: orange;
     border: 1px solid orange;
     border-radius: 14px;
-    padding: 1px 12px;
+    padding: 1px 7px;
     font-size: 12px;
-    size: 1px;
+}
+
+
+.change-btn {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    right: 0;
+    text-align: center;  
 }
 
 .like-numbers {
