@@ -179,8 +179,8 @@ footer {
     float: right;
     position: absolute;
     color: black;
-    top: 0;
-    right: 4%;
+    top: 1%;
+    right: 2%;
 }
 
 .top-right:hover {
@@ -254,8 +254,8 @@ footer {
 }
 
 .ft-profile-img {
-    height: 140px;
-    width: 140px;
+    height: 160px;
+    width: 160px;
 }
 
 .count_albums {

@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+	<div class="col-5 col-md-2 pt-4 pl-4 pr-0">
+		<%= image_tag(user.avatar.url, class: "img-fluid rounded-circle ft-profile-img", alt: "profile-avatar") %>
+	</div>
+
+	<div class="col-7 col-md- p-0">
+		<% if user == current_user %>
+			<%= link_to('Edit Profile', edit_user_path, class: "badge badge-pill bg-white text-blue font-weight-bold px-3 pt-1 mt-4 ml-1 border border-primary") %>
+		<% else %>
+			<% if current_user.followings.include? user %>
+				<button type="button" class="mt-4 ml-1 btn active-follow follow-btn">following</button>
+			<% else %>
+				<button type="button" class="mt-4 ml-1 btn follow-btn">follow</button>
+			<% end %>
+		<% end %>
+
+		<a href="#">
+			<p class="pt-3 pl-2 h1 text-dark font-weight-bolder"> <%= user.first_name%> <%= user.last_name%></p>
+		</a>
+
+		<div class="row px-3">
+			<div class="col-10 col-md-3 border-right border-secondary">
+				<a class="photo-text font-weight-bold"> <%= photos.size %> <small>PHOTOS</small></a>
+			</div>
+
+			<div class="col-10 col-md-3 border-right border-secondary">
+				<a class="photo-text font-weight-bold "> <%= user.albums.size %> <small>ALBUMS</small></a>
+			</div>
+
+			<div class="col-10 col-md-3 border-right border-secondary">
+				<a class="photo-text font-weight-bold "> <%= user.followings.size%> <small>FOLLOWINGS</small></a>
+			</div>
+
+			<div class="col-10 col-md-3 border-right border-secondary">
+				<a class="photo-text font-weight-bold "> <%= user.followers.size %> <small>FOLLOWERS</small></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<% if user == current_user %>
+		<div class="offset-7 offset-md-10">
+			<%= link_to("Add Photo", new_user_photo_path(user_id: user.id), class: "btn btn-sm m-3 px-3 btn-success")%>
+		</div>
+	<% end %>
+</div>
+
+<div class="row mt-5 d-flex">
+	<div class="col-md-1"></div>
+	<div class="col-md-11">
+		<div class="row">
+			<% if photos.size != 0 %>
+				<% photos.each do |photo| %>
+					<div class="col-6 col-md-2 mx-4 p-0">
+						<div class="col-12 col-md-12 p-0">
+							<% if photo.sharing_mode == 'private' %>
+							  	<button class="top-right rounded-circle">
+									<i class="fas fa-xs fa-lock"></i>
+								</button>
+							<% end %>
+
+							<% if photo.image.url == nil %>
+								<%= image_tag('desktop.jpg', class: "img-fluid ft-imgs", alt: "photo") %>
+							<% else %>
+								<%= image_tag(photo.image.url, class: "img-fluid ft-imgs", alt: "photo") %>
+							<% end %>
+						</div>
+						<figcaption class="text-center small text-secondary border-0"> <%= photo.title %> </figcaption>
+					</div>
+				<% end %>
+			<% else %>
+				<div class="col-12 col-md-12">
+					<p class="text-center text-blue">You have not add any photos yet! Add one</p>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<div class="col-12 col-md-12 w-100 my-5"></div>
+
+
+<footer>
+	<nav aria-label="Page navigation example">
+		<ul class="pagination m-3 justify-content-center">
+			<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+			<li class="page-item active"><a class="page-link" href="#">1</a></li>
+			<li class="page-item"><a class="page-link" href="#">2</a></li>
+			<li class="page-item"><a class="page-link" href="#">3</a></li>
+			<li class="page-item"><a class="page-link" href="#">Next</a></li>
+		</ul>
+	</nav>
+</footer>

@@ -38,16 +38,25 @@
 						<% else %>
 							<%= image_tag(photo.image.url, class: "col-12 col-md-6 p-0 img-fluid img-thumbnail card-img mx-auto", alt: "Card image cap")%>
 						<% end %>
-
+						
 						<div class="col-12 col-md-6 pl-2 pr-0">
 							<div class="card-title">
-								<%= image_tag(photo.user.avatar.url, class: "img-fluid rounded-circle ft-avatar", alt: "user-avatar") %>
-								<span class="font-weight-bold ft-login" href="#"> <%= photo.user.first_name %> <%= photo.user.last_name %> </span>
-								
-								<% if current_user.followings.include? photo.user%>
-									<button type="button" class="ml-1 btn active-follow follow-btn">following</button>
+								<% if photo.user != current_user %>
+									<%= link_to(user_path(id: current_user.id, user: photo.user), class: "text-dark") do %>
+										<%= image_tag(photo.user.avatar.url, class: "img-fluid rounded-circle ft-avatar", alt: "user-avatar") %>
+										<span class="font-weight-bold ft-login" href="#"> <%= photo.user.first_name %> <%= photo.user.last_name %> </span>
+									<% end %>
 								<% else %>
-									<button type="button" class="ml-1 btn follow-btn">follow</button>
+									<%= image_tag(photo.user.avatar.url, class: "img-fluid rounded-circle ft-avatar", alt: "user-avatar") %>
+									<span class="font-weight-bold ft-login" href="#"> <%= photo.user.first_name %> <%= photo.user.last_name %> </span>
+								<% end %>	
+								
+								<% if photo.user != current_user %>
+									<% if current_user.followings.include? photo.user%>
+										<button type="button" class="ml-1 btn active-follow follow-btn">following</button>
+									<% else %>
+										<button type="button" class="ml-1 btn follow-btn">follow</button>
+									<% end %>
 								<% end %>
 
 								<p><strong> <%= photo.title %> </strong></p>

@@ -41,8 +41,11 @@
 
 						<div class="col-12 col-md-6">
 							<div class="card-title">
-								<%= image_tag(photo.user.avatar.url, class: "img-fluid rounded-circle ft-avatar", alt: "user-avatar") %>
-								<span class="font-weight-bold ft-login" href="#"> <%= photo.user.first_name %> <%= photo.user.last_name %> </span>
+								<%= link_to(user_path(id: current_user.id, user: photo.user), class: "text-dark") do %>
+									<%= image_tag(photo.user.avatar.url, class: "img-fluid rounded-circle ft-avatar", alt: "user-avatar") %>
+									<span class="font-weight-bold ft-login" href="#"> <%= photo.user.first_name %> <%= photo.user.last_name %> </span>
+								<% end %>
+
 								<p><strong> <%= photo.title %> </strong></p>
 							</div>
 

@@ -22,7 +22,6 @@
 
 		<div class="col-xs-6 col-md-1 text-center">
 			<%= link_to(user_path(id: current_user.id), class: "navbar-brand") do  %>
-				<%# image_tag("tuanminh.png", class: "img-fluid rounded-circle ft-avatar") %>
 				<%= image_tag(current_user.avatar.url, class: "img-fluid rounded-circle ft-avatar") %>
 				<span class="font-weight-bold ft-login" href="#"> <%= current_user.first_name %> <%=current_user.last_name %> </span>
 			<% end %>
@@ -48,86 +47,11 @@
 		</div>
 
 		<main class="col-xs-6 col-md-8 bg-white mt-3 hmm">
-
-			<div class="row justify-content-center">
-				<div class="col-5 col-md-2 pt-4 pl-4 pr-0">
-					<%= image_tag(current_user.avatar.url, class: "img-fluid rounded-circle ft-profile-img", alt: "profile-avatar") %>
-				</div>
-
-				<div class="col-7 col-md- p-0">
-					<%= link_to('Edit Profile', edit_user_path, class: "badge badge-pill bg-white text-blue font-weight-bold px-3 pt-1 mt-4 ml-1 border border-primary") %>
-
-					<a href="#">
-						<p class="pt-3 pl-2 h1 text-dark font-weight-bolder"> <%= current_user.first_name%> <%= current_user.last_name%></p>
-					</a>
-
-					<div class="row px-3">
-						<div class="col-10 col-md-3 border-right border-secondary">
-							<a class="photo-text font-weight-bold"> <%= current_user.photos.size %> <small>PHOTOS</small></a>
-						</div>
-
-						<div class="col-10 col-md-3 border-right border-secondary">
-							<a class="photo-text font-weight-bold "> <%= current_user.albums.size %> <small>ALBUMS</small></a>
-						</div>
-
-						<div class="col-10 col-md-3 border-right border-secondary">
-							<a class="photo-text font-weight-bold "> <%= current_user.followings.size%> <small>FOLLOWINGS</small></a>
-						</div>
-
-						<div class="col-10 col-md-3 border-right border-secondary">
-							<a class="photo-text font-weight-bold "> <%= current_user.followers.size %> <small>FOLLOWERS</small></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="offset-7 offset-md-10">
-					<%= link_to("Add Photo", new_user_photo_path(user_id: current_user.id), class: "btn btn-sm m-3 px-3 btn-success")%>
-				</div>
-			</div>
-
-			<div class="row mt-5 d-flex">
-				<div class="col-md-1"></div>
-				<div class="col-md-11">
-					<div class="row">
-						<% if current_user.photos.size != 0 %>
-							<% current_user.photos.each do |photo| %>
-								
-								<div class="col-6 col-md-2 mx-4 p-0">
-									<div class="col-12 col-md-12 p-0">
-										<% if photo.image.url == nil %>
-											<%= image_tag('desktop.jpg', class: "img-fluid ft-imgs", alt: "photo") %>
-										<% else %>
-											<%= image_tag(photo.image.url, class: "img-fluid ft-imgs", alt: "photo") %>
-										<% end %>
-									</div>
-									<figcaption class="text-center small text-secondary border-0"> <%= photo.title %> </figcaption>
-								</div>
-							<% end %>
-						<% else %>
-							<div class="col-12 col-md-12">
-								<p class="text-center text-blue">You have not add any photos yet! Add one</p>
-							</div>
-						<% end %>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-12 col-md-12 w-100 my-5"></div>
-
-
-			<footer>
-				<nav aria-label="Page navigation example">
-					<ul class="pagination m-3 justify-content-center">
-						<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-						<li class="page-item active"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">Next</a></li>
-					</ul>
-				</nav>
-			</footer>
+			<% if params.has_key?(:user) %>
+				<%= render 'profile', user: User.find(params[:user].to_i), photos: User.find(params[:user].to_i).photos.where(sharing_mode: 'public') %>
+			<% else %>
+				<%= render 'profile', user: current_user, photos: current_user.photos %>
+			<% end %>
 		</main>
 
 		<div class="col-md-2"></div>
