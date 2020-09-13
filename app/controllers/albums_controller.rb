@@ -1,34 +1,54 @@
 class AlbumsController < ApplicationController
-	before_action :getAlbum, only: [:edit, :update]
+	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    before_action :find_album, only: [:edit, :update, :destroy]
 
-	def getAlbum
-		@album = Album.find(params[:id])
-	end
+	def new
+        @album = current_user.albums.new
+    end
+
+    def create
+        # byebug
+        @album = current_user.albums.create(album_params)
+        if @album.valid?
+            redirect_to user_path(id: current_user)
+        else
+            flash[:error] = @album.errors.messages
+            redirect_to new_user_album_path
+        end
+    end
 
 	def edit
 	end
-
-	def show
-	end	
 	
 	def update
-		@new_title = params[:album][:title]
-		@album.title = @new_title
-		
-		if @album.update(album_params)
-			# flash[:notice] = 'Update Successfully'
-			# redirect_to edit_album_path
-			redirect_to newest_path
-		else 
-			flash[:error] = 'Title is too short'
-			flash.now[:error] = 'Title is too short'
-			render "edit"
-			# redirect_to edit_album_path
-		end
-	end
+		updated = @album.update(album_params)
+        if updated
+            redirect_to user_path(id: current_user)
+        else
+            flash[:error] = @album.errors.messages
+            redirect_to edit_user_album_path
+        end
+    end
+    
+    def destroy
+        destroyed = @album.destroy
+        if destroyed
+            redirect_to user_path(id: current_user)
+        else
+            flash[:error] = @album.errors.messages
+            redirect_to edit_user_album_path
+        end 
+    end
 
 	private 
 		def album_params
-			params.require(:album).permit(:title)
-		end
+			params.require(:album).permit(:title, :sharing_mode, :images, :description)
+        end
+        
+        def find_album
+            @album = current_user.albums.find(params[:id])
+
+            rescue ActiveRecord::RecordNotFound
+                render :file => 'public/404.html', :status => :not_found, :layout => false
+        end
 end
