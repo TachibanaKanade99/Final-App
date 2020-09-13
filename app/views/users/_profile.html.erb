@@ -18,68 +18,109 @@
 			<p class="pt-3 pl-2 h1 text-dark font-weight-bolder"> <%= user.first_name%> <%= user.last_name%></p>
 		</a>
 
-		<div class="row px-3">
-			<div class="col-10 col-md-3 border-right border-secondary">
-				<a class="photo-text font-weight-bold"> <%= photos.size %> <small>PHOTOS</small></a>
-			</div>
+        <ul class="nav nav-tabs px-3 border-0">
+            <li class="nav-item col-10 col-md-3 border-right">
+                <a class="nav-link active font-weight-bold profile-text border-0" id="photos-tab" data-toggle="tab" href="#photos" role="tab" aria-controls="photos" aria-selected="true"> <%= photos.size %> <small>PHOTOS</small></a>
+            </li>
+            <li class="nav-item col-10 col-md-3 border-right">
+                <a class="nav-link font-weight-bold profile-text border-0" id="albums-tab" data-toggle="tab" href="#albums" role="tab" aria-controls="albums" aria-selected="true"> <%= albums.size %> <small>ALBUMS</small></a>
+            </li>
+            <li class="nav-item col-10 col-md-3 border-right">
+                <a class="nav-link font-weight-bold profile-text border-0" id="followings-tab" data-toggle="tab" href="#followings" role="tab" aria-controls="followings" aria-selected="true"> <%= followings.size %> <small>FOLLOWINGS</small></a>
+            </li>
+            <li class="nav-item col-10 col-md-3 border-right">
+                <a class="nav-link font-weight-bold profile-text border-0" id="followers-tab" data-toggle="tab" href="#followers" role="tab" aria-controls="followers" aria-selected="true"> <%= followers.size %> <small>FOLLOWERS</small></a>
+            </li>
+        </ul>
 
-			<div class="col-10 col-md-3 border-right border-secondary">
-				<a class="photo-text font-weight-bold "> <%= user.albums.size %> <small>ALBUMS</small></a>
-			</div>
+		<!-- <div class="row px-3">
+            <div class="col-10 col-md-3 border-right border-secondary">
+                <a class="profile-text font-weight-bold profile-text-active"> <%= photos.size %> <small>PHOTOS</small></a>
+            </div>
 
-			<div class="col-10 col-md-3 border-right border-secondary">
-				<a class="photo-text font-weight-bold "> <%= user.followings.size%> <small>FOLLOWINGS</small></a>
-			</div>
+            <div class="col-10 col-md-3 border-right border-secondary">
+                <a class="profile-text font-weight-bold"> <%= user.albums.size %> <small>ALBUMS</small></a>
+            </div>
 
-			<div class="col-10 col-md-3 border-right border-secondary">
-				<a class="photo-text font-weight-bold "> <%= user.followers.size %> <small>FOLLOWERS</small></a>
-			</div>
-		</div>
+            <div class="col-10 col-md-3 border-right border-secondary">
+                <a class="profile-text font-weight-bold"> <%= user.followings.size%> <small>FOLLOWINGS</small></a>
+            </div>
+
+            <div class="col-10 col-md-3 border-right border-secondary">
+                <a class="profile-text font-weight-bold"> <%= user.followers.size %> <small>FOLLOWERS</small></a>
+            </div>
+        </div> -->
 	</div>
 </div>
 
-<div class="row">
-	<% if user == current_user %>
-		<div class="offset-7 offset-md-10">
-			<%= link_to("Add Photo", new_user_photo_path(user_id: user.id), class: "btn btn-sm m-3 px-3 btn-success")%>
-		</div>
-	<% end %>
-</div>
+<div class="tab-content">
+    <%# Photos Tab %>
+    <div class="tab-pane fade show active" id="photos" role="tabpanel" aria-labelledby="photos-tab">
+        <div class="row">
+            <% if user == current_user %>
+                <div class="offset-7 offset-md-10">
+                    <%= link_to("Add Photo", new_user_photo_path(user_id: user.id), class: "btn btn-sm m-3 px-3 btn-success")%>
+                </div>
+            <% end %>
+        </div>
 
-<div class="row mt-5 d-flex">
-	<div class="col-md-1"></div>
-	<div class="col-md-11">
-		<div class="row">
-			<% if photos.size != 0 %>
-				<% photos.each do |photo| %>
-					<div class="col-6 col-md-2 mx-4 p-0">
-						<div class="col-12 col-md-12 p-0">
-							<% if photo.sharing_mode == 'private' %>
-							  	<button class="top-right rounded-circle">
-									<i class="fas fa-xs fa-lock"></i>
-								</button>
-							<% end %>
+        <div class="row mt-5 d-flex">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                <div class="row">
+                    <% if photos.size != 0 %>
+                        <% photos.each do |photo| %>
+                            <div class="col-6 col-md-2 mx-4 mb-4 p-0">
+                                <div class="col-12 col-md-12 p-0">
+                                    <% if photo.sharing_mode == 'private' %>
+                                        <button class="top-right rounded-circle">
+                                            <i class="fas fa-xs fa-lock"></i>
+                                        </button>
+                                    <% end %>
 
-							<% if photo.image.url == nil %>
-								<%= image_tag('desktop.jpg', class: "img-fluid ft-imgs", alt: "photo") %>
-							<% else %>
-								<%= image_tag(photo.image.url, class: "img-fluid ft-imgs", alt: "photo") %>
-							<% end %>
-						</div>
-						<figcaption class="text-center small text-secondary border-0"> <%= photo.title %> </figcaption>
-					</div>
-				<% end %>
-			<% else %>
-				<div class="col-12 col-md-12">
-					<p class="text-center text-blue">You have not add any photos yet! Add one</p>
-				</div>
-			<% end %>
-		</div>
-	</div>
+                                    <% if user == current_user %>
+                                        <%= link_to('EDIT', edit_user_photo_path(user_id: user, id: photo.id), class: "btn btn-sm btn-dark edit-photo-btn bottom-right", type: "button") %>
+                                    <% end %>
+
+                                    <% if photo.image.url == nil %>
+                                        <%= image_tag('desktop.jpg', class: "img-fluid ft-imgs", alt: "photo") %>
+                                    <% else %>
+                                        <%= image_tag(photo.image.url, class: "img-fluid ft-imgs border", alt: "photo") %>
+                                    <% end %>
+                                </div>
+                                <figcaption class="text-center small text-secondary border-0"> <%= photo.title %> </figcaption>
+                            </div>
+                        <% end %>
+                    <% else %>
+                        <div class="col-12 col-md-12">
+                            <p class="text-center text-blue">You have not add any photos yet! Add one</p>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%# Albums Tab %>
+    <div class="tab-pane fade" id="albums" role="tabpanel" aria-labelledby="albums-tab">
+        <div class="row">
+            <% if user == current_user %>
+                <div class="offset-7 offset-md-10">
+                    <%= link_to("Add Album", new_user_album_path(user_id: user.id), class: "btn btn-sm m-3 px-3 btn-success")%>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+    <%# Followings Tab %>
+    <div class="tab-pane fade" id="followings" role="tabpanel" aria-labelledby="followings-tab"></div>
+
+    <%# Follwers Tab %>
+    <div class="tab-pane fade" id="follwers" role="tabpanel" aria-labelledby="follwers-tab"></div>
+
 </div>
 
 <div class="col-12 col-md-12 w-100 my-5"></div>
-
 
 <footer>
 	<nav aria-label="Page navigation example">

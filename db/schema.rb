@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_11_073521) do
+ActiveRecord::Schema.define(version: 2020_09_13_073225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_09_11_073521) do
     t.bigint "user_id", null: false
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.string "image"
+    t.string "image", null: false
     t.bigint "album_id"
     t.index ["album_id"], name: "index_photos_on_album_id"
     t.index ["user_id"], name: "index_photos_on_user_id"
@@ -72,10 +72,6 @@ ActiveRecord::Schema.define(version: 2020_09_11_073521) do
     t.integer "photos_count", default: 0
     t.integer "albums_count", default: 0
     t.string "avatar"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["first_name"], name: "index_users_on_first_name"
-    t.index ["last_name"], name: "index_users_on_last_name"
-    t.index ["password"], name: "index_users_on_password"
   end
 
   add_foreign_key "albums", "users"

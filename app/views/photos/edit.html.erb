@@ -1,11 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head></head>
-
 <body data-spy="scroll" data-target="#toc" class="ft-mainpage">
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark ft-navbar">
-	<div class="col-xs-1 col-md-2 text-center">
+	<div class="col-xs-1 col-md-1 offset-md-1 text-center">
 		<a class="navbar-brand ft-name font-weight-bold" href="#">Fotobook</a>
 	</div>
 
@@ -33,40 +32,50 @@
 	</div>
 </nav>
 
-<div class="container-fluid ">
+<div class="container-fluid">
 	<div class="row">
-		<div class="col-md-2 mt-5">
+		<div class="col-xs-1 col-md-2 mt-5">
 			<nav class="sticky-top text-center" id="toc" data-toggle="toc">
 				<ul class="nav navbar-nav">
-					<%= link_to("Feeds", user_feeds_path(user_id: params[:id], status: 'photo'), method: "get", class: "btn shadow-none p-0 content-text", type: "button") %>
+					<%= link_to("Feeds", user_feeds_path(user_id: current_user, status: 'photo'), method: "get", class: "btn shadow-none p-0 content-text", type: "button") %>
 				</ul>
 				<ul class="nav navbar-nav">
-					<%= link_to("Discover", user_discover_path(user_id: params[:id], status: 'photo'), method: "get", class: "btn shadow-none p-0 content-text", type: "button") %>
+					<button type="button" class="btn p-0 shadow-none content-text">My Photos</button>
+				</ul>
+				<ul class="nav navbar-nav">
+					<button type="button" class="btn p-0 shadow-none content-text">My Albums</button>
 				</ul>
 			</nav>
 		</div>
 
-		<main class="col-xs-6 col-md-8 bg-white mt-3 hmm">
-			<% if params.has_key?(:user) %>
-                <%= render 'profile', 
-                    user: User.find(params[:user].to_i), 
-                    photos: User.find(params[:user].to_i).photos.where(sharing_mode: 'public'), 
-                    albums: User.find(params[:user].to_i).albums.where(sharing_mode: 'public'), 
-                    followings: User.find(params[:user].to_i).followings, 
-                    followers: User.find(params[:user].to_i).followers  
-                %>
+		<div class="col-xs-6 col-md-8 bg-white mt-3 hmm">
+            <div class="float-md-right">
+                <%= link_to('Back', user_path, class: "btn btn-sm m-3 px-3 ft-back-btn") %>
+            </div>
 
-			<% else %>
-                <%= render 'profile', user: current_user, 
-                    photos: current_user.photos, 
-                    albums: current_user.albums,
-                    followings: current_user.followings,
-                    followers: current_user.followers
-                %>
-			<% end %>
-		</main>
+			<div class="m-3 font-weight-bolder h5">
+				Edit Photo
+			</div>
+			<hr>
 
-		<div class="col-md-2"></div>
+			<%= render 'form', user: current_user, photo: @photo, type: 'edit_photo' %>
+
+			<footer>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination m-3 justify-content-center">
+						<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+						<li class="page-item active"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					</ul>
+				</nav>
+			</footer>
+		</div>
+
+		<div class="col-xs-1 col-md-2">
+
+		</div>
 	</div>
 
 </div>

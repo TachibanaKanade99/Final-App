@@ -9,16 +9,16 @@ Rails.application.routes.draw do
 
 	# User
 	resources :users, only: [:edit, :show, :update] do
-		resources :albums, only: [:new, :create, :edit, :show, :destroy]
-		resources :photos, only: [:new, :create, :edit, :show, :destroy]
+		resources :albums, except: [:index]
+		resources :photos, except: [:index]
 		
 		# User feeds
 		get 'feeds'
-		get 'feeds/:status', to: 'users#feeds'
+		# get 'feeds/:status', to: 'users#feeds'
 
 		# User discover
 		get 'discover'
-		get 'discover/:status', to: 'users#discover'
+		# get 'discover/:status', to: 'users#discover'
 	end
 
 	# Admin
@@ -26,14 +26,5 @@ Rails.application.routes.draw do
 		resources :users, :photos, :albums, only: [:show, :edit, :update, :destroy]
 	end
 
-	
 	root 'users#feeds'
-
-	# Albums
-	# namespace :albums do
-	#   resources :photos, only: [:edit, :update, :show, :destory]
-	# end
-	# resources :albums
-	# resources :users, only: [:new, :create, :show]
-
 end

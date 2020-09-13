@@ -48,7 +48,7 @@ $(document).ready(function() {
     });
 
     //Photo Modal
-    $(".card-img").bind("click", function (){
+    $(".img-thumbnail").bind("click", function (){
         title = $(this).parent().children("div.col-md-6").children("div.card-title").children("p").children("strong");
         // console.log(title.text());
         src = $(this).attr("src")

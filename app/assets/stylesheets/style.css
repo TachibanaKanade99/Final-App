@@ -77,7 +77,7 @@ footer {
     color: white;
 }
 
-.ft-button:hover, .active {
+.ft-button:hover, .ft-button-active {
     background-color: #3C5999;
     color: white;
 }
@@ -106,6 +106,10 @@ footer {
     color: gray;
     border: 2px dashed gray;
     padding: 50px;
+}
+
+.edit-photo-btn {
+    opacity: 65%;
 }
 
 .file-input {
@@ -266,9 +270,14 @@ footer {
     opacity: 40%;
 }
 
-.photo-text {
+.profile-text {
     font-size: 20px;
+    /* color: gray; */
 }
+/* 
+.profile-text:hover, .profile-text-active {
+    color: #3C5999;
+} */
 
 .google-icon {
     width: 130px;
