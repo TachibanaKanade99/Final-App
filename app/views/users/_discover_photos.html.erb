@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="btn-group mx-auto m-3">
-		<%= link_to('PHOTO', user_discover_path(status: 'photo'), class: "btn ft-button active", type: "button") %>
+		<%= link_to('PHOTO', user_discover_path(status: 'photo'), class: "btn ft-button ft-button-active", type: "button") %>
 		<%= link_to('ALBUM', user_discover_path(status: 'album'), class: "btn ft-button", type: "button") %>
 	</div>
 </div>
@@ -34,20 +34,20 @@
 				<div class="card h-100 border-light bg-light position-relative">
 					<div class="row py-0 card-body">
 						<% if photo.image.url == nil %>
-							<%= image_tag("desktop.jpg", class: "col-12 col-md-6 p-0 img-fluid img-thumbnail card-img", alt: "Card image cap") %>
+							<%= image_tag("desktop.jpg", class: "col-12 col-md-6 p-0 img-thumbnail card-img", alt: "Card image cap") %>
 						<% else %>
-							<%= image_tag(photo.image.url, class: "col-12 col-md-6 p-0 img-fluid img-thumbnail card-img mx-auto", alt: "Card image cap")%>
+							<%= image_tag(photo.image.url, class: "col-12 col-md-6 p-0 img-thumbnail card-img mx-auto", alt: "Card image cap")%>
 						<% end %>
 						
 						<div class="col-12 col-md-6 pl-2 pr-0">
 							<div class="card-title">
 								<% if photo.user != current_user %>
-									<%= link_to(user_path(id: current_user.id, user: photo.user), class: "text-dark") do %>
-										<%= image_tag(photo.user.avatar.url, class: "img-fluid rounded-circle ft-avatar", alt: "user-avatar") %>
+									<%= link_to(user_path(id: current_user, user: photo.user), class: "text-dark") do %>
+										<%= image_tag(photo.user.avatar.url, class: "rounded-circle ft-avatar", alt: "user-avatar") %>
 										<span class="font-weight-bold ft-login" href="#"> <%= photo.user.first_name %> <%= photo.user.last_name %> </span>
 									<% end %>
 								<% else %>
-									<%= image_tag(photo.user.avatar.url, class: "img-fluid rounded-circle ft-avatar", alt: "user-avatar") %>
+									<%= image_tag(photo.user.avatar.url, class: "rounded-circle ft-avatar", alt: "user-avatar") %>
 									<span class="font-weight-bold ft-login" href="#"> <%= photo.user.first_name %> <%= photo.user.last_name %> </span>
 								<% end %>	
 								

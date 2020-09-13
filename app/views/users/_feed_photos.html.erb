@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="btn-group mx-auto m-3">
-		<%= link_to('PHOTO', user_feeds_path(user_id: current_user.id, status: 'photo'), class: "btn ft-button active", type: "button") %>
-		<%= link_to('ALBUM', user_feeds_path(user_id: current_user.id, status: 'album'), class: "btn ft-button", type: "button") %>
+		<%= link_to('PHOTO', user_feeds_path(user_id: current_user, status: 'photo'), class: "btn ft-button ft-button-active", type: "button") %>
+		<%= link_to('ALBUM', user_feeds_path(user_id: current_user, status: 'album'), class: "btn ft-button", type: "button") %>
 	</div>
 </div>
 
@@ -30,18 +30,14 @@
 <div class="row">
 	<% if users.size != 0 %>
 		<% photos.each do |photo| %>
-			<div class="col-12 col-md-6 p-3">
+			<div class="col-9 col-md-6 p-3">
 				<div class="card h-100 border-light bg-light position-relative">
 					<div class="row py-0 card-body">
-						<% if photo.image.url == nil %>
-							<%= image_tag("desktop.jpg", class: "col-12 col-md-6 p-0 img-fluid img-thumbnail card-img", alt: "Card image cap") %>
-						<% else %>
-							<%= image_tag(photo.image.url, class: "col-12 col-md-6 p-0 img-fluid img-thumbnail card-img mx-auto", alt: "Card image cap")%>
-						<% end %>
+						<%= image_tag(photo.image.url, class: "col-12 col-md-6 p-0 img-thumbnail card-img mx-auto", alt: "Card image cap")%>
 
 						<div class="col-12 col-md-6">
 							<div class="card-title">
-								<%= link_to(user_path(id: current_user.id, user: photo.user), class: "text-dark") do %>
+								<%= link_to(user_path(id: current_user, user: photo.user), class: "text-dark") do %>
 									<%= image_tag(photo.user.avatar.url, class: "img-fluid rounded-circle ft-avatar", alt: "user-avatar") %>
 									<span class="font-weight-bold ft-login" href="#"> <%= photo.user.first_name %> <%= photo.user.last_name %> </span>
 								<% end %>
