@@ -26,7 +26,7 @@ class AlbumsController < ApplicationController
         updated = @album.update!(title: params[:album][:title],
                                 sharing_mode: params[:album][:sharing_mode],
                                 description: params[:album][:description],
-                                images: @album.images + params[:album][:images]
+                                images: @album.images + params[:album][:images].to_a
                                 )
         # updated = @album.update!(album_params)
         if updated
@@ -45,6 +45,13 @@ class AlbumsController < ApplicationController
             flash[:error] = @album.errors.messages
             redirect_to edit_user_album_path
         end 
+    end
+
+    def remove_image
+        @album = current_user.albums.find(params[:album_id])
+        @album.images.delete_at(params[:image].to_i)
+        @album.save
+        redirect_to edit_user_album_path(id: @album.id)
     end
 
 	private 

@@ -30,6 +30,14 @@ a.disabled {
     pointer-events: none;
 }
 
+.nav-tabs > .nav-item > a {
+    color: gray;
+}
+
+.nav-tabs > .nav-item > .active {
+    color: #3C5999;
+}
+
 .error {
     color: red;
 }
@@ -213,7 +221,8 @@ footer {
 }
 
 .album-imgs {
-    height: 270px;
+    height: 260px;
+    width: 245px;
 }
 
 .ft-feed {

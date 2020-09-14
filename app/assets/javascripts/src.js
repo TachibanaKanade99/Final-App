@@ -24,6 +24,10 @@ $(document).ready(function() {
                 required: true
             },
 
+            "photo[image]": {
+                required: true
+            },
+
             // Album
             "album[title]": {
                 required: true
@@ -53,10 +57,15 @@ $(document).ready(function() {
                 required: "Photo Title cannot be empty"
             },
 
+            "photo[image]": {
+                required: "Photo Image cannot be empty"
+            },
+
             // Album
             "album[title]": {
                 required: "Album Title cannot be empty"
-            }
+            },
+
 		},
 		// errorPlacement: function(error, element){
 		// 	error.appendTo($(element).next())
@@ -70,7 +79,7 @@ $(document).ready(function() {
     });
 
     //Photo Modal
-    $(".img-thumbnail").bind("click", function (){
+    $(".card-img").bind("click", function (){
         title = $(this).parent().children("div.col-md-6").children("div.card-title").children("p").children("strong");
         // console.log(title.text());
         src = $(this).attr("src")
@@ -87,23 +96,23 @@ $(document).ready(function() {
     });
 
     //Album Modal
-    $(".album-imgs").bind("click", function (){
-        title = $(this).parent().parent().children("div.pl-4").children("div.card-title").children("p").children("strong");
-        // console.log(title.text());
-        src = $(this).attr("src")
-        description = $(this).parent().parent().children("div.col-md-6").children("div.card-body").children("p.card-text");
-        // console.log(description.text());
-        created_at = $(this).parent().parent().children("div.col-md-6").children("span.ft-date");
-        // console.log(created_at.text());
+    // $(".album-imgs").bind("click", function (){
+    //     title = $(this).parent().parent().children("div.pl-4").children("div.card-title").children("p").children("strong");
+    //     // console.log(title.text());
+    //     src = $(this).attr("src")
+    //     description = $(this).parent().parent().children("div.col-md-6").children("div.card-body").children("p.card-text");
+    //     // console.log(description.text());
+    //     created_at = $(this).parent().parent().children("div.col-md-6").children("span.ft-date");
+    //     // console.log(created_at.text());
 
-        $(".modal-title").text(title.text());
-        $(".modal-body").children("p").text(description.text());
-        $(".modal-body").children("img").attr("src", src);
-        $(".modal-footer").children("p").text(created_at.text());
-        $("#photo-modal").modal("show");
-    });
+    //     $(".modal-title").text(title.text());
+    //     $(".modal-body").children("p").text(description.text());
+    //     $(".modal-body").children().children("div.carousel-inner").children("div.active").children("img").attr("src", src);
+    //     $(".modal-footer").children("p").text(created_at.text());
+    //     $("#albums-modal").modal("show");
+    // });
 
-    // Album and Photo Button
+    // // Album and Photo Button
     // selected_btn = $(".btn-group").children()
     // selected_btn.on({
     //     click: function () {
@@ -139,9 +148,10 @@ $(document).ready(function() {
 		$(".image").removeClass("d-none");
     });
     
-    $(".images-preview .col-md-12 .close-btn").on("click", function() {
-        $(this).parent().parent().addClass("d-none");
-    });
+    // $(".images-preview .col-md-12 .close-btn").on("click", function() {
+    //     console.log($(this).text())
+    //     // $(this).parent().parent().addClass("d-none");
+    // });
 });
 
 function readURL(input) {

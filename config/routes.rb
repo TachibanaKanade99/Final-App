@@ -9,7 +9,10 @@ Rails.application.routes.draw do
 
 	# User
 	resources :users, only: [:edit, :show, :update] do
-		resources :albums, except: [:index]
+        resources :albums, except: [:index] do
+            delete 'remove_image'
+        end
+
 		resources :photos, except: [:index]
 		
 		# User feeds
