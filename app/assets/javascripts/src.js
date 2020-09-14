@@ -1,7 +1,8 @@
 $(document).ready(function() {
-	var form = $(".form-signin");
+	var form = $(".form-signin, .photo-form, .album-form");
 	form.validate({
 		rules: {
+            // User
 			"user[first_name]": {
 				required: true
 			},
@@ -17,8 +18,19 @@ $(document).ready(function() {
             "user[password_confirmation]": {
                 required: true
             },
+
+            // Photo
+            "photo[title]": {
+                required: true
+            },
+
+            // Album
+            "album[title]": {
+                required: true
+            },
 		},
 		messages: {
+            // User
 			"user[first_name]": {
                 required: "First Name cannot be empty"
             },
@@ -35,6 +47,16 @@ $(document).ready(function() {
                 required: "Reenter your password!!!",
                 equalTo: "Your password is not the same!"
             },
+
+            // Photo
+            "photo[title]": {
+                required: "Photo Title cannot be empty"
+            },
+
+            // Album
+            "album[title]": {
+                required: "Album Title cannot be empty"
+            }
 		},
 		// errorPlacement: function(error, element){
 		// 	error.appendTo($(element).next())
@@ -115,7 +137,11 @@ $(document).ready(function() {
 	$(".close-btn").on("click", function() {
 		$(".image-preview").addClass("d-none");
 		$(".image").removeClass("d-none");
-	})
+    });
+    
+    $(".images-preview .col-md-12 .close-btn").on("click", function() {
+        $(this).parent().parent().addClass("d-none");
+    });
 });
 
 function readURL(input) {

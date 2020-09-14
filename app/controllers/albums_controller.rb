@@ -10,6 +10,7 @@ class AlbumsController < ApplicationController
         # byebug
         @album = current_user.albums.create(album_params)
         if @album.valid?
+            flash[:success] = "Add Successfully"
             redirect_to user_path(id: current_user)
         else
             flash[:error] = @album.errors.messages
@@ -20,8 +21,14 @@ class AlbumsController < ApplicationController
 	def edit
 	end
 	
-	def update
-		updated = @album.update(album_params)
+    def update
+        # byebug
+        updated = @album.update!(title: params[:album][:title],
+                                sharing_mode: params[:album][:sharing_mode],
+                                description: params[:album][:description],
+                                images: @album.images + params[:album][:images]
+                                )
+        # updated = @album.update!(album_params)
         if updated
             redirect_to user_path(id: current_user)
         else
@@ -42,7 +49,7 @@ class AlbumsController < ApplicationController
 
 	private 
 		def album_params
-			params.require(:album).permit(:title, :sharing_mode, :images, :description)
+			params.require(:album).permit(:title, :sharing_mode, :description, { images: [] })
         end
         
         def find_album

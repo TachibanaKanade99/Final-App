@@ -1,4 +1,6 @@
 class Album < ApplicationRecord
+    mount_uploaders :images, ImageUploader
+
 	# Active Record Validation
 
 	validates :title, length: {

@@ -110,6 +110,43 @@
                 </div>
             <% end %>
         </div>
+
+        <div class="row mt-5 d-flex">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                <div class="row">
+                    <% if albums.size != 0 %>
+                        <% albums.each do |album| %>
+                            <div class="col-6 col-md-2 mx-4 mb-4 p-0">
+                                <div class="col-12 col-md-12 p-0">
+
+                                    <%= image_tag(album.images[0].url, class: "position-absolute img-fluid img-thumbnail ft-imgs", alt: "album") %>
+                                    <%= image_tag(album.images[0].url, class: "position-absolute rotate6 img-fluid img-thumbnail ft-imgs", alt: "album") %>
+                                    <%= image_tag(album.images[0].url, class: "rotate11 img-fluid img-thumbnail ft-imgs", alt: "album") %>
+
+                                    <span class="position-absolute text-center text-white font-weight-bold border border-dark rounded-circle p-3 count_albums"> <%= album.images.size %> Photos </span>
+
+                                    <% if album.sharing_mode == 'private' %>
+                                        <button class="top-right rounded-circle">
+                                            <i class="fas fa-xs fa-lock"></i>
+                                        </button>
+                                    <% end %>
+
+                                    <% if user == current_user %>
+                                        <%= link_to('EDIT', edit_user_album_path(user_id: user, id: album.id), class: "btn btn-sm btn-dark edit-album-btn bottom-right", type: "button") %>
+                                    <% end %>
+                                </div>
+                                <figcaption class="text-center small text-secondary border-0 mt-4"> <%= album.title %> </figcaption>
+                            </div>
+                        <% end %>
+                    <% else %>
+                        <div class="col-12 col-md-12">
+                            <p class="text-center text-blue">You have not add any albums yet! Add one</p>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
     </div>
 
     <%# Followings Tab %>
