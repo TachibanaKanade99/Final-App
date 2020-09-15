@@ -18,39 +18,47 @@ class UsersController < ApplicationController
 	end
 
 	def feeds
-		#Get following users
-		@following_users = current_user.followings
 
-		@following_photos = @following_users.map{ |user| Photo.joins(:user).where("photos.user_id = ? AND photos.sharing_mode = ?", user.id, "public") }.flatten!
+		# @following_photos = @following_users.map{ |user| Photo.joins(:user).where("photos.user_id = ? AND photos.sharing_mode = ?", user.id, "public") }.flatten!
 		
-		if !@following_photos.nil?
-			@following_photos = @following_photos.sort_by(&:created_at).reverse
-		end
+		# if !@following_photos.nil?
+		# 	@following_photos = @following_photos.sort_by(&:created_at).reverse
+		# end
 
-		@following_albums = @following_users.map{ |user| Album.joins(:user).where("albums.user_id = ? AND albums.sharing_mode = ?", user.id, "public") }.flatten!
+        # @following_albums = @following_users.map{ |user| Album.joins(:user).where("albums.user_id = ? AND albums.sharing_mode = ?", user.id, "public") }.flatten!
 		
-		if !@following_albums.nil?
-			@following_albums = @following_albums.sort_by(&:created_at).reverse
-		end
+		# if !@following_albums.nil?
+		# 	@following_albums = @following_albums.sort_by(&:created_at).reverse
+        # end
+        
+        #Get following users
+        @following_users = current_user.followings
+        
+        @following_photos = Photo.joins(:user).where(user_id: current_user.followings, sharing_mode: "public").order(created_at: :desc)
+        @following_albums = Album.joins(:user).where(user_id: current_user.followings, sharing_mode: "public").order(created_at: :desc)
 
 	end
 
 	def discover
 		# Get all users
-		@users = User.all
+		# @users = User.all
 
-		@discover_photos = @users.map{ |user| Photo.joins(:user).where("photos.user_id = ? AND photos.sharing_mode = ?", user.id, "public") }.flatten!
+		# @discover_photos = @users.map{ |user| Photo.joins(:user).where("photos.user_id = ? AND photos.sharing_mode = ?", user.id, "public") }.flatten!
 		
-		if !@discover_photos.nil?
-			@discover_photos = @discover_photos.sort_by(&:created_at).reverse
-		end
+		# if !@discover_photos.nil?
+		# 	@discover_photos = @discover_photos.sort_by(&:created_at).reverse
+		# end
 
-		@discover_albums = @users.map{ |user| Album.joins(:user).where("albums.user_id = ? AND albums.sharing_mode = ?", user.id, "public") }.flatten!
+		# @discover_albums = @users.map{ |user| Album.joins(:user).where("albums.user_id = ? AND albums.sharing_mode = ?", user.id, "public") }.flatten!
 		
-		if !@discover_albums.nil?
-			@discover_albums = @discover_albums.sort_by(&:created_at).reverse
-		end
+		# if !@discover_albums.nil?
+		# 	@discover_albums = @discover_albums.sort_by(&:created_at).reverse
+        # end
 
+        # Get all users
+        @users = User.all
+        @discover_photos = Photo.joins(:user).where(user_id: @users, sharing_mode: "public").order(created_at: :desc)
+        @discover_albums = Album.joins(:user).where(user_id: @users, sharing_mode: "public").order(created_at: :desc)
 	end
 
 	private
