@@ -18,7 +18,8 @@ class AlbumsController < ApplicationController
         end
     end
 
-	def edit
+    def edit
+        flash.clear
 	end
 	
     def update
