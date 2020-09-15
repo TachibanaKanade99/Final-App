@@ -150,11 +150,163 @@
     </div>
 
     <%# Followings Tab %>
-    <div class="tab-pane fade" id="followings" role="tabpanel" aria-labelledby="followings-tab"></div>
+    <div class="tab-pane fade" id="followings" role="tabpanel" aria-labelledby="followings-tab">
 
-    <%# Follwers Tab %>
-    <div class="tab-pane fade" id="follwers" role="tabpanel" aria-labelledby="follwers-tab"></div>
+        <div class="row mt-5 d-flex">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                <div class="row mt-5">
+                    <% if followings.size != 0 %>
+                        <% followings.each do |following| %>
+                            <div class="col-12 col-md-2 mx-4 mb-4 border bg-light">
+                                <% if following != current_user %>
+                                    <%= link_to(user_path(id: current_user, user: following), class: "text-dark") do %>
+                                        <div class="col-12 col-md-12 pt-2 text-center">
+                                            <%= image_tag(following.avatar.url, class: "img-fluid follow-profile rounded-circle border", alt: "profile-avatar") %>
+                                        </div>
+                                        <div class="col-12 col-md-12 pt-2 px-0 text-center">
+                                            <span class="text-dark font-weight-bold"> <%= following.first_name %> <%= following.last_name %> </span>
+                                        </div>
+                                    <% end %>
+                                <% else %>
+                                    <div class="col-12 col-md-12 pt-2 text-center">
+                                        <%= image_tag(following.avatar.url, class: "img-fluid follow-profile rounded-circle border", alt: "profile-avatar") %>
+                                    </div>
+                                    <div class="col-12 col-md-12 pt-2 px-0 text-center">
+                                        <span class="text-dark font-weight-bold"> <%= following.first_name %> <%= following.last_name %> </span>
+                                    </div>
+                                <% end %>
 
+                                <div class="col-12 col-md-12 pt-2">
+                                    <div class="row justify-content-around">
+                                        <div class="col-4 col-md-4 p-0">
+                                            <div class="row">
+                                                <div class="col-12 col-md-12 text-center">
+                                                    <span class="font-weight-bold text-blue"> <%= following.photos.size %> </span>
+                                                </div>
+                                                <div class="col-12 col-md-12 text-center">
+                                                    <span class="font-weight-bold text-blue"><small>PHOTOS</small></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-4 p-0">
+                                            <div class="row">
+                                                <div class="col-12 col-md-12 text-center">
+                                                    <span class="font-weight-bold text-blue"> <%= following.albums.size %> </span>
+                                                </div>
+                                                <div class="col-12 col-md-12 text-center">
+                                                    <span class="font-weight-bold text-blue"><small>ALBUMS</small></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <% if user != current_user %>
+                                    <div class="col-12 col-md-12 text-center">
+                                        <% if current_user.followings.include? following %>
+                                            <button type="button" class="m-2 btn active-follow follow-btn">following</button>
+                                        <% elsif following == current_user %>
+                                            <span class="m-2"></span>
+                                        <% else %>
+                                            <button type="button" class="m-2 btn follow-btn">follow</button>
+                                        <% end %>
+                                    </div>
+                                <% else %>
+                                    <div class="col-12 col-md-12 text-center">
+                                        <button class="badge badge-pill btn btn-outline-warning font-weight-bold px-3 p-1 m-2"> unfollow </button>
+                                    </div>
+								<% end %>
+                                
+                            </div>
+                        <% end %>
+                    <% else %>
+                        <div class="col-12 col-md-12">
+                            <p class="text-center text-blue"> You have not follow anyone yet! </p>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <%# Followers Tab %>
+    <div class="tab-pane fade" id="followers" role="tabpanel" aria-labelledby="followers-tab">
+    
+        <div class="row mt-5 d-flex">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                <div class="row mt-5">
+                    <% if followers.size != 0 %>
+                        <% followers.each do |follower| %>
+                            <div class="col-12 col-md-2 mx-4 mb-4 border bg-light">
+                                
+                                <% if follower != current_user %>
+                                    <%= link_to(user_path(id: current_user, user: follower), class: "text-dark") do %>
+                                        <div class="col-12 col-md-12 pt-2 text-center">
+                                            <%= image_tag(follower.avatar.url, class: "img-fluid follow-profile rounded-circle border", alt: "profile-avatar") %>
+                                        </div>
+                                        <div class="col-12 col-md-12 pt-2 px-0 text-center">
+                                            <span class="font-weight-bold text-dark"> <%= follower.first_name %> <%= follower.last_name %> </span>
+                                        </div>
+                                    <% end %>
+                                <% else %>
+                                    <div class="col-12 col-md-12 pt-2 text-center">
+                                        <%= image_tag(follower.avatar.url, class: "img-fluid follow-profile rounded-circle border", alt: "profile-avatar") %>
+                                    </div>
+                                    <div class="col-12 col-md-12 pt-2 px-0 text-center">
+                                        <span class="font-weight-bold text-dark"> <%= follower.first_name %> <%= follower.last_name %> </span>
+                                    </div>
+                                <% end %>
+
+                                <div class="col-12 col-md-12 pt-2">
+                                    <div class="row justify-content-around">
+                                        <div class="col-4 col-md-4 p-0">
+                                            <div class="row">
+                                                <div class="col-12 col-md-12 text-center">
+                                                    <span class="font-weight-bold text-blue"> <%= follower.photos.size %> </span>
+                                                </div>
+                                                <div class="col-12 col-md-12 text-center">
+                                                    <span class="font-weight-bold text-blue"><small>PHOTOS</small></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-4 p-0">
+                                            <div class="row">
+                                                <div class="col-12 col-md-12 text-center">
+                                                    <span class="font-weight-bold text-blue"> <%= follower.albums.size %> </span>
+                                                </div>
+                                                <div class="col-12 col-md-12 text-center">
+                                                    <span class="font-weight-bold text-blue"><small>ALBUMS</small></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-12 text-center">
+                                    <% if current_user.followings.include? follower %>
+                                        <button type="button" class="m-2 btn active-follow follow-btn">following</button>
+                                    <% elsif follower == current_user %>
+                                        <span class="m-2"></span>
+                                    <% else %>
+                                        <button type="button" class="m-2 btn follow-btn">follow</button>
+                                    <% end %>
+                                </div>
+                                
+                            </div>
+                        <% end %>
+                    <% else %>
+                        <div class="col-12 col-md-12">
+                            <p class="text-center text-blue"> No one follows you ! </p>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 <div class="col-12 col-md-12 w-100 my-5"></div>

@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
 	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-    before_action :find_album, only: [:edit, :update, :destroy]
+    before_action :find_album, only: [:edit, :update, :destroy, :add_new_images]
 
 	def new
         @album = current_user.albums.new
@@ -22,13 +22,10 @@ class AlbumsController < ApplicationController
 	end
 	
     def update
-        # byebug
-        updated = @album.update!(title: params[:album][:title],
-                                sharing_mode: params[:album][:sharing_mode],
-                                description: params[:album][:description],
-                                images: @album.images + params[:album][:images].to_a
-                                )
-        # updated = @album.update!(album_params)
+        # byebug 
+        add_new_images(image_params[:images])
+        updated = @album.update!(album_params_without_images)
+
         if updated
             redirect_to user_path(id: current_user)
         else
@@ -57,6 +54,20 @@ class AlbumsController < ApplicationController
 	private 
 		def album_params
 			params.require(:album).permit(:title, :sharing_mode, :description, { images: [] })
+        end
+
+        def album_params_without_images
+            params.require(:album).permit(:title, :sharing_mode, :description)
+        end
+
+        def image_params
+            params.require(:album).permit({ images: [] })
+        end
+
+        def add_new_images(new_image)
+            images = @album.images
+            images += new_image.to_a
+            @album.assign_attributes(images: images)
         end
         
         def find_album

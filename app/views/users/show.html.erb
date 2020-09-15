@@ -57,7 +57,8 @@
                 %>
 
 			<% else %>
-                <%= render 'profile', user: current_user, 
+                <%= render 'profile', 
+                    user: current_user, 
                     photos: current_user.photos, 
                     albums: current_user.albums,
                     followings: current_user.followings,
