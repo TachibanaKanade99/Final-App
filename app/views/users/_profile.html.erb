@@ -65,12 +65,12 @@
         </div>
 
         <div class="row mt-5 d-flex">
-            <div class="col-md-1"></div>
-            <div class="col-md-11">
+            <div class="col-2 col-md-1"></div>
+            <div class="col-10 col-md-11">
                 <div class="row">
                     <% if photos.size != 0 %>
                         <% photos.each do |photo| %>
-                            <div class="col-6 col-md-2 mx-4 mb-4 p-0">
+                            <div class="col-8 col-md-2 mx-4 mb-4 p-0">
                                 <div class="col-12 col-md-12 p-0">
                                     <% if photo.sharing_mode == 'private' %>
                                         <button class="top-right rounded-circle">
@@ -79,7 +79,7 @@
                                     <% end %>
 
                                     <% if user == current_user %>
-                                        <%= link_to('EDIT', edit_user_photo_path(user_id: user, id: photo.id), class: "btn btn-sm btn-dark edit-photo-btn bottom-right", type: "button") %>
+                                        <%= link_to('EDIT', edit_user_photo_path(user_id: user, id: photo.id), class: "btn btn-sm btn-dark edit-btn bottom-right", type: "button") %>
                                     <% end %>
 
                                     <% if photo.image.url == nil %>
@@ -112,12 +112,12 @@
         </div>
 
         <div class="row mt-5 d-flex">
-            <div class="col-md-1"></div>
-            <div class="col-md-11">
+            <div class="col-2 col-md-1"></div>
+            <div class="col-10 col-md-11">
                 <div class="row">
                     <% if albums.size != 0 %>
                         <% albums.each do |album| %>
-                            <div class="col-6 col-md-2 mx-4 mb-4 p-0">
+                            <div class="col-8 col-md-2 mx-4 mb-4 p-0">
                                 <div class="col-12 col-md-12 p-0">
                                     
                                     <%= image_tag(album.images[0].url, class: "position-absolute rotate6 img-fluid img-thumbnail ft-imgs", alt: "album") %> 
@@ -133,7 +133,7 @@
                                     <% end %>
 
                                     <% if user == current_user %>
-                                        <%= link_to('EDIT', edit_user_album_path(user_id: user, id: album.id), class: "btn btn-sm btn-dark edit-album-btn bottom-right", type: "button") %>
+                                        <%= link_to('EDIT', edit_user_album_path(user_id: user, id: album.id), class: "btn btn-sm btn-dark edit-btn bottom-right", type: "button") %>
                                     <% end %>
                                 </div>
                                 <figcaption class="text-center small text-secondary border-0 mt-4"> <%= album.title %> </figcaption>
@@ -153,12 +153,12 @@
     <div class="tab-pane fade" id="followings" role="tabpanel" aria-labelledby="followings-tab">
 
         <div class="row mt-5 d-flex">
-            <div class="col-md-1"></div>
-            <div class="col-md-11">
+            <div class="col-2 col-md-1"></div>
+            <div class="col-10 col-md-11">
                 <div class="row mt-5">
                     <% if followings.size != 0 %>
                         <% followings.each do |following| %>
-                            <div class="col-12 col-md-2 mx-4 mb-4 border bg-light">
+                            <div class="col-8 col-md-2 mx-4 mb-4 border bg-light">
                                 <% if following != current_user %>
                                     <%= link_to(user_path(id: current_user, user: following), class: "text-dark") do %>
                                         <div class="col-12 col-md-12 pt-2 text-center">
@@ -235,12 +235,12 @@
     <div class="tab-pane fade" id="followers" role="tabpanel" aria-labelledby="followers-tab">
     
         <div class="row mt-5 d-flex">
-            <div class="col-md-1"></div>
-            <div class="col-md-11">
+            <div class="col-2 col-md-1"></div>
+            <div class="col-10 col-md-11">
                 <div class="row mt-5">
                     <% if followers.size != 0 %>
                         <% followers.each do |follower| %>
-                            <div class="col-12 col-md-2 mx-4 mb-4 border bg-light">
+                            <div class="col-8 col-md-2 mx-4 mb-4 border bg-light">
                                 
                                 <% if follower != current_user %>
                                     <%= link_to(user_path(id: current_user, user: follower), class: "text-dark") do %>

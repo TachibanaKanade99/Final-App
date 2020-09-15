@@ -73,13 +73,19 @@
 								<p><strong> <%= album.title %> </strong></p>
 							</div>
 
-							<div class="card-body px-0">
+							<div class="card-body d-flex flex-column p-0">
 								<p class="card-text"> <%= album.description %> </p>
 							</div>
+                            <div class="w-100 spaces">Some space</div>
+                            <div class="w-100 spaces">Some space</div>
 
-							<span><button class="heart-btn px-0" ><i class="fas fa-heart"></i></button></span>
-							<span class="like-numbers">112</span>
-							<span class="offset-md-2 font-italic ft-date"> <%= album.created_at.localtime %> </span>
+							<div class="row card-foot w-100">
+								<div class="col-3 col-md-3 pr-0">
+									<button class="heart-btn px-0"><i class="fas fa-heart"></i></button>
+									<span class="like-numbers">112</span>
+								</div>
+								<div class="col-9 col-md-9 font-italic ft-date mt-1"> <%= album.created_at.localtime.to_s(:long)%> </div>
+							</div>
 						</div>
 					</div>
 				</div>
