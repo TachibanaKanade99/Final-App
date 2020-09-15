@@ -21,10 +21,16 @@
 		</div>
 
 		<div class="col-xs-6 col-md-1 text-center">
-			<%= link_to(user_path(id: current_user), class: "navbar-brand") do  %>
-				<%= image_tag(current_user.avatar.url, class: "img-fluid rounded-circle ft-avatar") %>
-				<span class="font-weight-bold ft-login" href="#"> <%= current_user.first_name %> <%=current_user.last_name %> </span>
-			<% end %>
+            <div class="navbar-brand">
+
+                <%= link_to(admin_manage_photos_path) do %>
+                    <%= image_tag(current_user.avatar.url, class: "img-fluid rounded-circle ft-avatar") %>
+                <% end %>
+
+                <%= link_to(user_path(id: current_user)) do  %>
+                    <span class="font-weight-bold ft-login text-white" href="#"> <%= current_user.first_name %> <%=current_user.last_name %> </span>
+                <% end %>
+            </div>
 		</div>
 
 		<div class="col-xs-6 col-md-2 text-center">
@@ -65,6 +71,16 @@
                     followers: current_user.followers
                 %>
 			<% end %>
+
+            <div class="mt-3">
+                <% flash.each do |type, msg| %>
+                    <% if msg != 'Signed in successfully.' %>
+                        <div class="alert alert-info">
+                            <%= msg %>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
 		</main>
 
 		<div class="col-md-2"></div>

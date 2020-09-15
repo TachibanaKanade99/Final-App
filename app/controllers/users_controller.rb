@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :authenticate_user!, only: [:edit, :show, :feeds, :discover]
+    before_action :authenticate_user!, only: [:edit, :update, :show, :destroy, :feeds, :discover, :manage_photos, :manage_albums, :manage_users]
 
 	def edit
 	end
@@ -14,8 +14,11 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def show
-	end
+    def show
+    end
+    
+    def destroy
+    end
 
 	def feeds
 
@@ -59,12 +62,12 @@ class UsersController < ApplicationController
         @users = User.all
         @discover_photos = Photo.joins(:user).where(user_id: @users, sharing_mode: "public").order(created_at: :desc)
         @discover_albums = Album.joins(:user).where(user_id: @users, sharing_mode: "public").order(created_at: :desc)
-	end
+    end
 
 	private
 
 	def user_params
 		params.require(:user).permit(:avatar, :first_name, :last_name, :email, :password, :password_confirmation)
-	end
+    end
 
 end
