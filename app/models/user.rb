@@ -1,6 +1,13 @@
 class User < ApplicationRecord
 	# Devise modules
-	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :confirmable, :validatable, :timeoutable
+    devise :database_authenticatable, :registerable, :recoverable, :rememberable, :confirmable, :validatable, :timeoutable, :trackable
+    
+    def active_for_authentication?
+        # Uncomment the below debug statement to view the properties of the returned self model values.
+        # logger.debug self.to_yaml
+        	
+        super && self.active?
+    end
 
 	# Mount avatar
 	mount_uploader :avatar, AvatarUploader
@@ -51,7 +58,7 @@ class User < ApplicationRecord
 	has_many :likes, dependent: :destroy
 
 	def send_welcome_mail
-		UserMailer.with(user: self).welcome_email.deliver_now		
+		UserMailer.with(user: self).welcome_email.deliver_later		
 	end
 	
 end

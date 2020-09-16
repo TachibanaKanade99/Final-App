@@ -56,18 +56,12 @@
                             <% @photos.each do |photo| %>
                                 <div class="col-xs-1 col-md-2 m-4 p-0 border">
                                     <div class="col-md-12 p-0 border">
-                                        <!--<a href="#" class="top-content text-center">
-                                            Lorem ipsum dolor sit amet...
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <-->
-
+                                        
                                         <%= link_to(edit_admin_user_photo_path(user_id: photo.user.id, id: photo.id), class: "top-content text-center") do %>
                                             <%= photo.title %>
                                             <i class="fas fa-edit"></i>
                                         <% end %>
 
-                                        <!--<img class="img-fluid ft-imgs" src="5wgCcaI.gif" alt="photo"><-->
                                         <%= image_tag(photo.image.url, class: "img-fluid ft-imgs", alt: "photo") %>
                                     </div>
                                 </div>

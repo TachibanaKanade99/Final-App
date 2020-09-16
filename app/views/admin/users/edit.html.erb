@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head></head>
+<body data-spy="scroll" data-target="#toc" class="ft-mainpage">
+	<nav class="navbar navbar-expand-lg fixed-top navbar-dark ft-navbar">
+		<div class="col-xs-1 col-md-2 p-0 text-center">
+			<a class="navbar-brand ft-name font-weight-bold" href="#">Fotobook</a>
+		</div>
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<div class="col-md-5 mr-auto px-0">
+				<div class="input-group input-group-sm">
+					<input class="form-control" type="search" role="search" placeholder="Search Photo / Album" aria-label="Search">
+				</div>
+			</div>
+			
+			<div class="col-xs-6 col-md-1 text-center">
+				<%= link_to(user_path(id: current_user), class: "navbar-brand") do  %>
+					<%= image_tag(current_user.avatar.url, class: "img-fluid rounded-circle ft-avatar") %>
+					<span class="font-weight-bold ft-login" href="#"> <%= current_user.first_name %> <%=current_user.last_name %> </span>
+				<% end %>
+			</div>
+
+			<div class="col-xs-6 col-md-2 text-center">
+				<a class="navbar-brand font-weight-bold ft-login" href="#">Logout</a>
+			</div>
+		</div>	
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2 mt-5">
+				<nav class="sticky-top text-center" id="toc" data-toggle="toc">
+					<ul class="nav navbar-nav">
+						<%= link_to("Feeds", user_feeds_path(user_id: params[:id], status: 'photo'), method: "get", class: "btn shadow-none p-0 content-text", type: "button") %>
+					</ul>
+					<ul class="nav navbar-nav">
+						<%= link_to("Discover", user_discover_path(user_id: params[:id], status: 'photo'), method: "get", class: "btn shadow-none p-0 content-text", type: "button") %>
+					</ul>
+				</nav>
+			</div>
+			
+			<div class="col-xs-6 col-md-8 bg-white mt-3 py-5 hmm">
+				<div class="float-md-right">
+                    <%= link_to('Back', admin_manage_users_path(id: current_user), class: "btn btn-sm m-3 px-3 ft-back-btn") %>
+                </div>
+
+				<div class="m-3 font-weight-bolder h5">
+					Edit User Profile
+				</div>
+				<hr>
+
+				<%= form_with model: [:admin, @user], local: true do |u| %>
+
+					<div class="row justify-content-center">
+						<div class="col-5 col-md-2 m-4 p-0">
+							<div class="col-md-12 p-0 w-100 border">
+								<%= image_tag(@user.avatar.url, class: "img-fluid ft-imgs", alt: "photo") %>
+							</div>
+							
+							<div class="change-btn">
+								<%= u.label(:avatar, "Change", class: "btn btn-secondary", type: "button") %>
+								<%= u.file_field(:avatar, class: "btn btn-secondary change-avt-btn d-none") %>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-3"></div>
+						<div class="col-12 col-md-6 text-center">
+							<p class="text-blue font-weight-bold">Basic Information</p>
+
+							<div class="form-group row">
+								<div class="col-md-1"></div>
+								<%= u.label :first_name, "First Name", class: "col-3 col-md-2 col-form-label font-weight-bold px-0 mr-3 text-right" %>
+								<div class="col-8 col-md-7 px-0">
+									<%= u.text_field :first_name, class: "form-control", placeholder: "First Name"%>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-md-1"></div>
+								<%= u.label :last_name, "Last Name", class: "col-3 col-md-2 col-form-label font-weight-bold px-0 mr-3 text-right"%>
+								<div class="col-8 col-md-7 px-0">
+									<%= u.text_field :last_name, class: "form-control", placeholder: "Last Name"%>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-md-1"></div>
+								<%= u.label :email, "Email", class: "col-3 col-md-2 col-form-label font-weight-bold px-0 mr-3 text-right"%>
+								<div class="col-8 col-md-7 px-0">
+									<%= u.email_field :email, class: "form-control", placeholder: "Last Name"%>
+								</div>
+							</div>
+
+                            <div class="form-group row">
+                                <%= u.label :password, "Password", class: "col-4 col-md-3 col-form-label font-weight-bold px-0 mr-3 text-right"%>
+                                <div class="col-7 col-md-7 px-0">
+                                    <%= u.password_field :password, class: "form-control", placeholder: "*****" %>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-1"></div>
+                                <!--<label for="active" class="col-3 col-md-2 col-form-label font-weight-bold px-0 mr-3 text-right">Active?</label><-->
+                                <%= u.label :active, "Active?", class: "col-3 col-md-2 col-form-label font-weight-bold px-0 mr-3 text-right"%>
+                                <div class="col-1 col-md-1 ">
+                                    <!--<input class="form-check-input position-static mx-2 my-2" type="checkbox" id="blankCheckbox" value="option1" aria-label="Active?"><-->
+                                    <%= u.check_box :active, class: "form-check-input position-static mx-2 my-2", type: "checkbox"%>
+                                </div>
+                            </div>
+
+                            <%= u.submit "Save", class: "btn btn-success" %>
+                            
+                            <br><br>
+                            <div>
+                                <% flash.each do |type, msg| %>
+                                    <% if msg != "Signed in successfully."%>
+                                        <div class="alert alert-info">
+                                            <%= msg %>
+                                        </div>
+                                    <% end %>
+                                <% end %>
+                            </div>
+						</div>
+						<div class="col-md-3"></div>
+					</div>
+				<% end %>
+
+			</div>	
+		</div>
+	</div>
+</body>
+</html>

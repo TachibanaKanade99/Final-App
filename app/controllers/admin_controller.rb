@@ -21,7 +21,7 @@ class AdminController < ApplicationController
 
     def manage_users
         if current_user.admin?
-            @users = User.all
+            @users = User.all.where(admin: false)
         else
             flash[:error] = "You are not Admin =.="
             redirect_to user_path(id: current_user)

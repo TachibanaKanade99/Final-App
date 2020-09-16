@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!, only: [:edit, :update, :show, :destroy, :feeds, :discover, :manage_photos, :manage_albums, :manage_users]
+    before_action :authenticate_user!, only: [:edit, :update, :show, :feeds, :discover]
 
 	def edit
 	end
@@ -15,9 +15,6 @@ class UsersController < ApplicationController
 	end
 
     def show
-    end
-    
-    def destroy
     end
 
 	def feeds

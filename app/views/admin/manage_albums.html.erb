@@ -55,22 +55,14 @@
                             <% @albums.each do |album| %>
                                 <div class="col-10 col-md-2 m-4 p-3 text-center border">
                                     
-                                    <div class="col-12 col-md-12  p-0">
-                                        <!--<img class="position-absolute img-fluid img-thumbnail ft-imgs" src="5wgCcaI.gif" alt="photo">
-                                        <img class="position-absolute rotate6 img-fluid img-thumbnail ft-imgs" src="5wgCcaI.gif" alt="photo">
-                                        <img class="rotate11 img-fluid img-thumbnail ft-imgs" src="5wgCcaI.gif" alt="photo"><-->
-
+                                    <div class="col-12 col-md-12  p-0">       
                                         <%= image_tag(album.images[0].url, class: "position-absolute img-fluid img-thumbnail ft-imgs", alt: "photo") %>
                                         <%= image_tag(album.images[0].url, class: "position-absolute rotate6 img-fluid img-thumbnail ft-imgs", alt: "photo") %>
                                         <%= image_tag(album.images[0].url, class: "rotate11 img-fluid img-thumbnail ft-imgs", alt: "photo") %>
 
                                     </div>
 
-                                    <!--<a href="#" class="album-top-content text-center py-1">
-                                        Lorem ipsum dolor sit amet...
-                                        <i class="fas fa-edit"></i>
-                                    </a><-->
-                                    <%= link_to(edit_admin_user_album_path(user_id: album.user.id, id: album.id), class: "top-content text-center py-1") do %>
+                                    <%= link_to(edit_admin_user_album_path(user_id: album.user.id, id: album.id), class: "album-top-content text-center py-1") do %>
                                         <%= album.title %>
                                         <i class="fas fa-edit"></i>
                                     <% end %>

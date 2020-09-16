@@ -65,50 +65,21 @@
 								</thead>
 	
 								<tbody>
-									<tr>
-										<td>Tuan</td>
-										<td>Minh</td>
-										<td>123456@hotmai.com</td>
-										<td>4:00pm 26/08/2020</td>
-										<td>
-											<button type="button" class="btn btn-sm btn-success mr-3 mb-2">Edit</button>
-											<button type="button" class="btn btn-sm btn-danger mr-3 mb-2">Delete</button>
-										</td>
-									</tr>
+                                    <% @users.each do |user| %>
 
-									<tr>
-										<td>Tuan</td>
-										<td>Minh</td>
-										<td>123456@hotmai.com</td>
-										<td>4:00pm 26/08/2020</td>
-										<td>
-											<button type="button" class="btn btn-sm btn-success mr-3 mb-2">Edit</button>
-											<button type="button" class="btn btn-sm btn-danger mr-3 mb-2">Delete</button>
-										</td>
-									</tr>
-
-									<tr>
-										<td>Tuan</td>
-										<td>Minh</td>
-										<td>123456@hotmai.com</td>
-										<td>4:00pm 26/08/2020</td>
-										<td>
-											<button type="button" class="btn btn-sm btn-success mr-3 mb-2">Edit</button>
-											<button type="button" class="btn btn-sm btn-danger mr-3 mb-2">Delete</button>
-										</td>
-									</tr>
-
-									<tr>
-										<td>Tuan</td>
-										<td>Minh</td>
-										<td>123456@hotmai.com</td>
-										<td>4:00pm 26/08/2020</td>
-										<td>
-											<button type="button" class="btn btn-sm btn-success mr-3 mb-2">Edit</button>
-											<button type="button" class="btn btn-sm btn-danger mr-3 mb-2">Delete</button>
-										</td>
-									</tr>
-									
+                                        <tr>
+                                            <td> <%= user.first_name %> </td>
+                                            <td> <%= user.last_name %> </td>
+                                            <td> <%= user.email %> </td>
+                                            <td> <%= user.last_sign_in_at.localtime.to_s(:long) %> </td>
+                                            <td>
+                                                <!--<button type="button" class="btn btn-sm btn-success mr-3 mb-2">Edit</button><-->
+                                                <%= link_to("Edit", edit_admin_user_path(id: user.id), class: "btn btn-sm btn-success mr-3 mb-2", type: "button") %>
+                                                <!--<button type="button" class="btn btn-sm btn-danger mr-3 mb-2">Delete</button><-->
+                                                <%= link_to("Delete", admin_user_path(id: user.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger mr-3 mb-2", type: "button") %>
+                                            </td>
+                                        </tr>
+                                    <% end %>					
 								</tbody>
 							</table>
 						</div>

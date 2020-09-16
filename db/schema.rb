@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_15_030437) do
+ActiveRecord::Schema.define(version: 2020_09_16_032018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,12 @@ ActiveRecord::Schema.define(version: 2020_09_15_030437) do
     t.integer "photos_count", default: 0
     t.integer "albums_count", default: 0
     t.string "avatar"
+    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.boolean "active", default: true
   end
 
   add_foreign_key "albums", "users"
