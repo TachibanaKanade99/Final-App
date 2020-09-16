@@ -53,9 +53,21 @@
 
 							<div class="row card-foot w-100">
 								<div class="col-3 col-md-3 pr-0">
-									<button class="heart-btn px-0"><i class="fas fa-heart"></i></button>
-									<span class="like-numbers">112</span>
+                                    <div class="photo-<%=photo.id%>">
+                                        <% if !current_user.likes.find_by(likeable_id: photo.id).nil? %>
+                                            <%= link_to(user_toggle_like_path(user_id: current_user, likeable_type: 'Photo', likeable_id: photo.id), remote: true, class: "heart-btn heart-btn-active px-0") do %> 
+                                                <i class="fas fa-heart"></i>
+                                            <% end %>
+
+                                        <% else %>
+                                            <%= link_to(user_toggle_like_path(user_id: current_user, likeable_type: 'Photo', likeable_id: photo.id), remote: true, class: "heart-btn px-0") do %> 
+                                                <i class="fas fa-heart"></i>
+                                            <% end %>
+                                        <% end %>
+                                        <span class="like-numbers"> <%= photo.likes.size %> </span>
+                                    </div>
 								</div>
+
 								<div class="col-9 col-md-9 font-italic ft-date mt-1"> <%= photo.created_at.localtime.to_s(:long)%> </div>
 							</div>
 						</div>

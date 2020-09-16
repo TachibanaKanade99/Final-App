@@ -5,18 +5,20 @@
 
 	<div class="col-7 col-md- p-0">
 		<% if user == current_user %>
-			<%= link_to('Edit Profile', edit_user_path, class: "badge badge-pill bg-white text-blue font-weight-bold px-3 pt-1 mt-4 ml-1 border border-primary") %>
+			<%= link_to('Edit Profile', edit_user_path, class: "badge badge-pill bg-white text-blue font-weight-bold px-3 pt-1 mt-5 ml-4 border border-primary") %>
 		<% else %>
-			<% if current_user.followings.include? user %>
-				<button type="button" class="mt-4 ml-1 btn active-follow follow-btn">following</button>
-			<% else %>
-				<button type="button" class="mt-4 ml-1 btn follow-btn">follow</button>
-			<% end %>
+			<span class="item-<%=user.id%>">
+                <% if current_user.followings.include? user%>
+                    <%= link_to("following", user_toggle_follow_path(user_id: user.id), remote: true, class: "ml-4 mt-5 btn active-follow follow-btn", type: "button") %>
+                    <%= link_to("follow", user_toggle_follow_path(user_id: user.id), remote: true, class: "ml-4 mt-5 btn follow-btn d-none", type: "button") %>
+                <% else %>
+                    <%= link_to("following", user_toggle_follow_path(user_id: user.id), remote: true, class: "ml-4 mt-5 btn active-follow follow-btn d-none", type: "button") %>
+                    <%= link_to("follow", user_toggle_follow_path(user_id: user.id), remote: true, class: "ml-4 mt-5 btn follow-btn", type: "button") %>
+                <% end %>
+            </span>
 		<% end %>
 
-		<a href="#">
-			<p class="pt-3 pl-2 h1 text-dark font-weight-bolder"> <%= user.first_name%> <%= user.last_name%></p>
-		</a>
+		<p class="ml-3 pt-3 pl-2 h1 text-dark font-weight-bolder"> <%= user.first_name%> <%= user.last_name%></p>
 
         <ul class="nav nav-tabs px-3 border-0">
             <li class="nav-item col-10 col-md-3 border-right">
@@ -158,7 +160,7 @@
                 <div class="row mt-5">
                     <% if followings.size != 0 %>
                         <% followings.each do |following| %>
-                            <div class="col-8 col-md-2 mx-4 mb-4 border bg-light">
+                            <div class="col-8 col-md-2 mx-4 mb-4 px-0 border bg-light">
                                 <% if following != current_user %>
                                     <%= link_to(user_path(id: current_user, user: following), class: "text-dark") do %>
                                         <div class="col-12 col-md-12 pt-2 text-center">
@@ -204,17 +206,30 @@
 
                                 <% if user != current_user %>
                                     <div class="col-12 col-md-12 text-center">
-                                        <% if current_user.followings.include? following %>
-                                            <button type="button" class="m-2 btn active-follow follow-btn">following</button>
-                                        <% elsif following == current_user %>
-                                            <span class="m-2"></span>
-                                        <% else %>
-                                            <button type="button" class="m-2 btn follow-btn">follow</button>
-                                        <% end %>
+                                        
+                                        <span class="item-<%=following.id%>">
+                                            <% if current_user.followings.include? following%>
+                                                <%= link_to("following", user_toggle_follow_path(user_id: following.id), remote: true, class: "m-2 btn active-follow follow-btn", type: "button") %>
+                                                <%= link_to("follow", user_toggle_follow_path(user_id: following.id), remote: true, class: "m-2 btn follow-btn d-none", type: "button") %>
+                                            <% elsif following == current_user %>
+                                                <span class="m-2"></span>
+                                            <% else %>
+                                                <%= link_to("following", user_toggle_follow_path(user_id: following.id), remote: true, class: "m-2 btn active-follow follow-btn d-none", type: "button") %>
+                                                <%= link_to("follow", user_toggle_follow_path(user_id: following.id), remote: true, class: "m-2 btn follow-btn", type: "button") %>
+                                            <% end %>
+                                        </span>
                                     </div>
                                 <% else %>
                                     <div class="col-12 col-md-12 text-center">
-                                        <button class="badge badge-pill btn btn-outline-warning font-weight-bold px-3 p-1 m-2"> unfollow </button>
+                                        <span class="item-<%=following.id%>">
+                                            <% if current_user.followings.include? following%>
+                                                <%= link_to("unfollow", user_toggle_follow_path(user_id: following.id), remote: true, class: "btn active-follow follow-btn font-weight-bold px-3 p-1 m-2", type: "button") %>
+                                                <%= link_to("follow", user_toggle_follow_path(user_id: following.id), remote: true, class: "btn follow-btn font-weight-bold px-3 p-1 m-2 d-none", type: "button") %>
+                                            <% else %>
+                                                <%= link_to("unfollow", user_toggle_follow_path(user_id: following.id), remote: true, class: "btn active-follow font-weight-bold px-3 p-1 m-2 d-none", type: "button") %>
+                                                <%= link_to("follow", user_toggle_follow_path(user_id: following.id), remote: true, class: "btn follow-btn font-weight-bold px-3 p-1 m-2", type: "button") %>
+                                            <% end %>
+                                        </span>
                                     </div>
 								<% end %>
                                 
@@ -240,7 +255,7 @@
                 <div class="row mt-5">
                     <% if followers.size != 0 %>
                         <% followers.each do |follower| %>
-                            <div class="col-8 col-md-2 mx-4 mb-4 border bg-light">
+                            <div class="col-8 col-md-2 mx-4 mb-4 px-0 border bg-light">
                                 
                                 <% if follower != current_user %>
                                     <%= link_to(user_path(id: current_user, user: follower), class: "text-dark") do %>
@@ -285,15 +300,34 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-12 text-center">
-                                    <% if current_user.followings.include? follower %>
-                                        <button type="button" class="m-2 btn active-follow follow-btn">following</button>
-                                    <% elsif follower == current_user %>
-                                        <span class="m-2"></span>
-                                    <% else %>
-                                        <button type="button" class="m-2 btn follow-btn">follow</button>
-                                    <% end %>
-                                </div>
+                                <% if user != current_user %>
+                                    <div class="col-12 col-md-12 text-center">
+                                        
+                                        <span class="item-<%=follower.id%>">
+                                            <% if current_user.followers.include? follower%>
+                                                <%= link_to("follower", user_toggle_follow_path(user_id: follower.id), remote: true, class: "m-2 btn active-follow follow-btn", type: "button") %>
+                                                <%= link_to("follow", user_toggle_follow_path(user_id: follower.id), remote: true, class: "m-2 btn follow-btn d-none", type: "button") %>
+                                            <% elsif follower == current_user %>
+                                                <span class="m-2"></span>
+                                            <% else %>
+                                                <%= link_to("follower", user_toggle_follow_path(user_id: follower.id), remote: true, class: "m-2 btn active-follow follow-btn d-none", type: "button") %>
+                                                <%= link_to("follow", user_toggle_follow_path(user_id: follower.id), remote: true, class: "m-2 btn follow-btn", type: "button") %>
+                                            <% end %>
+                                        </span>
+                                    </div>
+                                <% else %>
+                                    <div class="col-12 col-md-12 text-center">
+                                        <span class="item-<%=follower.id%>">
+                                            <% if current_user.followings.include? follower%>
+                                                <%= link_to("unfollow", user_toggle_follow_path(user_id: follower.id), remote: true, class: "btn active-follow follow-btn font-weight-bold px-3 p-1 m-2", type: "button") %>
+                                                <%= link_to("follow", user_toggle_follow_path(user_id: follower.id), remote: true, class: "btn follow-btn font-weight-bold px-3 p-1 m-2 d-none", type: "button") %>
+                                            <% else %>
+                                                <%= link_to("unfollow", user_toggle_follow_path(user_id: follower.id), remote: true, class: "btn active-follow font-weight-bold px-3 p-1 m-2 d-none", type: "button") %>
+                                                <%= link_to("follow", user_toggle_follow_path(user_id: follower.id), remote: true, class: "btn follow-btn font-weight-bold px-3 p-1 m-2", type: "button") %>
+                                            <% end %>
+                                        </span>
+                                    </div>
+								<% end %>
                                 
                             </div>
                         <% end %>

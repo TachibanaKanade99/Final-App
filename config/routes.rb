@@ -24,6 +24,11 @@ Rails.application.routes.draw do
         get 'feeds'
         # User discover
         get 'discover'
+
+        # Like
+        get 'toggle_like'
+        # Follow
+        get 'toggle_follow'
     end
 
     namespace :admin, only: [:edit, :show, :update] do

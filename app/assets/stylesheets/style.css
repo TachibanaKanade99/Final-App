@@ -97,7 +97,7 @@ footer {
     color: gray
 }
 
-.heart-btn:hover {
+.heart-btn:hover, .heart-btn-active {
     outline: none;
     border: none;
     background-color: white;

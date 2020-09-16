@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!, only: [:edit, :update, :show, :feeds, :discover]
-
+    before_action :authenticate_user!, only: [:edit, :update, :show, :feeds, :discover, :toggle_like, :toggle_follow]
+    
 	def edit
 	end
 
@@ -18,19 +18,6 @@ class UsersController < ApplicationController
     end
 
 	def feeds
-
-		# @following_photos = @following_users.map{ |user| Photo.joins(:user).where("photos.user_id = ? AND photos.sharing_mode = ?", user.id, "public") }.flatten!
-		
-		# if !@following_photos.nil?
-		# 	@following_photos = @following_photos.sort_by(&:created_at).reverse
-		# end
-
-        # @following_albums = @following_users.map{ |user| Album.joins(:user).where("albums.user_id = ? AND albums.sharing_mode = ?", user.id, "public") }.flatten!
-		
-		# if !@following_albums.nil?
-		# 	@following_albums = @following_albums.sort_by(&:created_at).reverse
-        # end
-        
         #Get following users
         @following_users = current_user.followings
         
@@ -40,31 +27,44 @@ class UsersController < ApplicationController
 	end
 
 	def discover
-		# Get all users
-		# @users = User.all
-
-		# @discover_photos = @users.map{ |user| Photo.joins(:user).where("photos.user_id = ? AND photos.sharing_mode = ?", user.id, "public") }.flatten!
-		
-		# if !@discover_photos.nil?
-		# 	@discover_photos = @discover_photos.sort_by(&:created_at).reverse
-		# end
-
-		# @discover_albums = @users.map{ |user| Album.joins(:user).where("albums.user_id = ? AND albums.sharing_mode = ?", user.id, "public") }.flatten!
-		
-		# if !@discover_albums.nil?
-		# 	@discover_albums = @discover_albums.sort_by(&:created_at).reverse
-        # end
-
         # Get all users
         @users = User.all
         @discover_photos = Photo.joins(:user).where(user_id: @users, sharing_mode: "public").order(created_at: :desc)
         @discover_albums = Album.joins(:user).where(user_id: @users, sharing_mode: "public").order(created_at: :desc)
     end
 
+    def toggle_like
+        @liked = current_user.likes.find_by(likeable_id: params[:likeable_id])
+
+        if @liked.nil?
+            @like = current_user.likes.create(like_params)
+            render 'likes_create'
+        else
+            @liked.destroy
+            render 'likes_destroy'
+        end
+    end
+
+    def toggle_follow
+        @followed = current_user.followings.exists? params[:user_id]
+
+        if !@followed
+            @follow = current_user.followings << User.find(params[:user_id])
+            render 'follows_create'
+        else
+            current_user.followings.delete(params[:user_id])
+            render 'follows_destroy'
+        end
+    end
+
 	private
 
 	def user_params
 		params.require(:user).permit(:avatar, :first_name, :last_name, :email, :password, :password_confirmation)
+    end
+
+    def like_params
+        params.permit(:likeable_type, :likeable_id, :user_id)
     end
 
 end

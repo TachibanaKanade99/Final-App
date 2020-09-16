@@ -1,0 +1,9 @@
+<% if params[:likeable_type] == 'Photo' %>
+    $(".photo-<%=@liked.likeable_id%>").children("a.heart-btn").removeClass("heart-btn-active")
+    $(".photo-<%=@liked.likeable_id%>").children("span").html(<%=Photo.find(@liked.likeable_id).likes.size%>)
+    <% current_user.likes %>
+<% else %>
+    $(".album-<%=@liked.likeable_id%>").children("a.heart-btn").removeClass("heart-btn-active")
+    $(".album-<%=@liked.likeable_id%>").children("span").html(<%=Album.find(@liked.likeable_id).likes.size%>)
+    <% current_user.likes %>
+<% end %>
