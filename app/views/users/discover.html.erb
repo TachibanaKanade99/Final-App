@@ -4,7 +4,7 @@
 <body data-spy="scroll" data-target="#toc" class="ft-mainpage">
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark ft-navbar">
-	<div class="col-xs-1 col-md-2 text-center">
+	<div class="col-xs-1 col-md-2 p-0 text-center">
 		<a class="navbar-brand ft-name font-weight-bold" href="#">Fotobook</a>
 	</div>
 
@@ -50,27 +50,24 @@
 
 			<% if params[:status] == 'photo' %>
 				<%= render "discover_photos", users: @users, photos: @discover_photos %>
+
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <%= paginate @discover_photos %>
+                
 			<% else %>
-				<%= render "discover_albums", users: @users, albums: @discover_albums %> 
+				<%= render "discover_albums", users: @users, albums: @discover_albums %>
+
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <%= paginate @discover_albums %>
 			<% end %>
-
-			<div class="d-flex justify-content-center">
-				<div class="spinner-border" role="status">
-					<span class="sr-only">Loading...</span>
-				</div>
-			</div>
-
-			<footer>
-				<nav aria-label="Page navigation example">
-					<ul class="pagination m-3 justify-content-center">
-						<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-						<li class="page-item active"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">Next</a></li>
-					</ul>
-				</nav>
-			</footer>
 
 		</main>
 

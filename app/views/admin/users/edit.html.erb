@@ -57,7 +57,7 @@
 				<%= form_with model: [:admin, @user], local: true do |u| %>
 
 					<div class="row justify-content-center">
-						<div class="col-5 col-md-2 m-4 p-0">
+						<div class="col-6 col-md-2 m-4 p-0">
 							<div class="col-md-12 p-0 w-100 border">
 								<%= image_tag(@user.avatar.url, class: "img-fluid ft-imgs", alt: "photo") %>
 							</div>
@@ -99,7 +99,7 @@
 							</div>
 
                             <div class="form-group row">
-                                <%= u.label :password, "Password", class: "col-4 col-md-3 col-form-label font-weight-bold px-0 mr-3 text-right"%>
+                                <%= u.label :password, "Password", class: "col-3 col-md-3 col-form-label font-weight-bold px-0 mr-3 text-right"%>
                                 <div class="col-7 col-md-7 px-0">
                                     <%= u.password_field :password, class: "form-control", placeholder: "*****" %>
                                 </div>

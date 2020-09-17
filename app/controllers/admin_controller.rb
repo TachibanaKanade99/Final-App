@@ -3,7 +3,7 @@ class AdminController < ApplicationController
     
     def manage_photos
         if current_user.admin?
-            @photos = Photo.joins(:user).where(user_id: User.all)
+            @photos = Photo.joins(:user).where(user_id: User.all).page(params[:page]).per(40)
         else
             flash[:error] = "You are not Admin =.="
             redirect_to user_path(id: current_user)
@@ -12,7 +12,7 @@ class AdminController < ApplicationController
 
     def manage_albums
         if current_user.admin?
-            @albums = Album.joins(:user).where(user_id: User.all)
+            @albums = Album.joins(:user).where(user_id: User.all).page(params[:page]).per(40)
         else
             flash[:error] = "You are not Admin =.="
             redirect_to user_path(id: current_user)
@@ -21,7 +21,7 @@ class AdminController < ApplicationController
 
     def manage_users
         if current_user.admin?
-            @users = User.all.where(admin: false)
+            @users = User.all.where(admin: false).page(params[:page]).per(40)
         else
             flash[:error] = "You are not Admin =.="
             redirect_to user_path(id: current_user)

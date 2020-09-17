@@ -9,6 +9,7 @@ class Admin::UsersController < ApplicationController
         updated = @user.update!(user_params)
 
         if updated
+            flash[:success] = "Update user successfully!"
             redirect_to admin_manage_users_path
         else
             flash[:error] = @user.errors.messages
@@ -20,6 +21,7 @@ class Admin::UsersController < ApplicationController
         destroyed = @user.destroy
 
         if destroyed
+            flash[:success] = "Delete user successfully!"
             redirect_to admin_manage_users_path
         else
             flash[:error] = @user.errors.messages

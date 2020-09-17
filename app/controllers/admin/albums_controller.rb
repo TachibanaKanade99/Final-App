@@ -11,6 +11,7 @@ class Admin::AlbumsController < ApplicationController
         updated = @album.update!(album_params_without_images)
 
         if updated
+            flash[:error] = "Update Successfully!"
             redirect_to admin_manage_albums_path
         else
             flash[:error] = @album.errors.messages
@@ -21,6 +22,7 @@ class Admin::AlbumsController < ApplicationController
     def destroy
         destroyed = @album.destroy
         if destroyed
+            flash[:error] = "Album deleted successfully!"
             redirect_to admin_manage_albums_path
         else
             flash[:error] = @album.errors.messages

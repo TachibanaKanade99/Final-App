@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('ready turbolinks:load', function() {
 	var form = $(".form-signin, .photo-form, .album-form");
 	form.validate({
 		rules: {
@@ -152,6 +152,15 @@ $(document).ready(function() {
     //     console.log($(this).text())
     //     // $(this).parent().parent().addClass("d-none");
     // });
+
+    // Bootstrap Tabs
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    if(activeTab){
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+    }
 });
 
 function readURL(input) {

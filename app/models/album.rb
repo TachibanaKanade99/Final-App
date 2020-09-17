@@ -1,5 +1,9 @@
 class Album < ApplicationRecord
+    # Image Uploader
     mount_uploaders :images, ImageUploader
+
+    # Pagination
+    paginates_per 6
 
 	# Active Record Validation
 

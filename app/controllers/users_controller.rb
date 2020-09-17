@@ -21,16 +21,16 @@ class UsersController < ApplicationController
         #Get following users
         @following_users = current_user.followings
         
-        @following_photos = Photo.joins(:user).where(user_id: current_user.followings, sharing_mode: "public").order(created_at: :desc)
-        @following_albums = Album.joins(:user).where(user_id: current_user.followings, sharing_mode: "public").order(created_at: :desc)
+        @following_photos = Photo.joins(:user).where(user_id: current_user.followings, sharing_mode: "public").order(created_at: :desc).page(params[:page]).per(6)
+        @following_albums = Album.joins(:user).where(user_id: current_user.followings, sharing_mode: "public").order(created_at: :desc).page(params[:page]).per(6)
 
 	end
 
 	def discover
         # Get all users
         @users = User.all
-        @discover_photos = Photo.joins(:user).where(user_id: @users, sharing_mode: "public").order(created_at: :desc)
-        @discover_albums = Album.joins(:user).where(user_id: @users, sharing_mode: "public").order(created_at: :desc)
+        @discover_photos = Photo.joins(:user).where(user_id: @users, sharing_mode: "public").order(created_at: :desc).page(params[:page]).per(6)
+        @discover_albums = Album.joins(:user).where(user_id: @users, sharing_mode: "public").order(created_at: :desc).page(params[:page]).per(6)
     end
 
     def toggle_like

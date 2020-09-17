@@ -9,7 +9,8 @@ class PhotosController < ApplicationController
 	def create
 		# byebug
 		@photo = current_user.photos.create(photo_params)
-		if @photo.valid?
+        if @photo.valid?
+            flash[:success] = "Photo added successfully!"
 			redirect_to user_path(id: current_user)
 		else
 			flash[:error] = @photo.errors.messages
@@ -23,6 +24,7 @@ class PhotosController < ApplicationController
     def update
         updated = @photo.update(photo_params)
         if updated
+            flash[:success] = "Update Photo successfully!"
             redirect_to user_path(id: current_user)
         else
             flash[:error] = @photo.errors.messages
@@ -33,6 +35,7 @@ class PhotosController < ApplicationController
     def destroy
         destroyed = @photo.destroy
         if destroyed
+            flash[:error] = "Photo deleted successfully!"
             redirect_to user_path(id: current_user)
         else
             flash[:error] = @photo.errors.messages

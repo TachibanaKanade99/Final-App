@@ -27,6 +27,8 @@ gem 'kaminari'
 gem 'carrierwave', '~> 2.0'
 # Signin/Signup using Devise
 gem 'devise'
+# Cloudinary
+gem 'cloudinary'
 
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

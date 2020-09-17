@@ -9,6 +9,7 @@ class Admin::PhotosController < ApplicationController
         updated = @photo.update!(photo_params)
 
         if updated
+            flash[:success] = "Update Photo successfully!"
             redirect_to admin_manage_photos_path
         else
             flash[:error] = @photo.errors.messages
@@ -20,6 +21,7 @@ class Admin::PhotosController < ApplicationController
         destroyed = @photo.destroy
 
         if destroyed
+            flash[:success] = "Photo deleted successfully!"
             redirect_to admin_manage_photos_path
         else
             flash[:error] = @photo.errors.messages

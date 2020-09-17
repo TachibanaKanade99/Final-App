@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dcdi4y7e5
+  api_key: '181587663638444'
+  api_secret: FJWY8xq1-VFYshMDiEDVJTPqgdc
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dcdi4y7e5
+  api_key: '181587663638444'
+  api_secret: FJWY8xq1-VFYshMDiEDVJTPqgdc
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dcdi4y7e5
+  api_key: '181587663638444'
+  api_secret: FJWY8xq1-VFYshMDiEDVJTPqgdc
+  enhance_image_tag: true
+  static_file_support: false

@@ -5,7 +5,7 @@
 <body data-spy="scroll" data-target="#toc" class="ft-mainpage">
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark ft-navbar">
-	<div class="col-xs-1 col-md-2 text-center">
+	<div class="col-xs-1 col-md-2 p-0 text-center">
 		<a class="navbar-brand ft-name font-weight-bold" href="#">Fotobook</a>
 	</div>
 
@@ -56,19 +56,19 @@
 			<% if params.has_key?(:user) %>
                 <%= render 'profile', 
                     user: User.find(params[:user].to_i), 
-                    photos: User.find(params[:user].to_i).photos.where(sharing_mode: 'public'), 
-                    albums: User.find(params[:user].to_i).albums.where(sharing_mode: 'public'), 
-                    followings: User.find(params[:user].to_i).followings, 
-                    followers: User.find(params[:user].to_i).followers  
+                    photos: User.find(params[:user].to_i).photos.where(sharing_mode: 'public').page(params[:page]).per(8), 
+                    albums: User.find(params[:user].to_i).albums.where(sharing_mode: 'public').page(params[:page]).per(8), 
+                    followings: User.find(params[:user].to_i).followings.page(params[:page]).per(8), 
+                    followers: User.find(params[:user].to_i).followers.page(params[:page]).per(8)  
                 %>
 
 			<% else %>
                 <%= render 'profile', 
                     user: current_user, 
-                    photos: current_user.photos, 
-                    albums: current_user.albums,
-                    followings: current_user.followings,
-                    followers: current_user.followers
+                    photos: current_user.photos.page(params[:page]).per(8), 
+                    albums: current_user.albums.page(params[:page]).per(8),
+                    followings: current_user.followings.page(params[:page]).per(8),
+                    followers: current_user.followers.page(params[:page]).per(8)
                 %>
 			<% end %>
 

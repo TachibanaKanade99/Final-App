@@ -45,9 +45,10 @@
 			</div>
 			
 			<div class="col-xs-6 col-md-8 bg-white mt-3 py-5 hmm">
-				<!-- <div class="float-md-right">
-					<button type="button" class="btn btn-sm m-3 px-3 ft-back-btn">Back</button>
-				</div> -->
+
+                <div class="float-md-right">
+                    <%= link_to('Back', user_path(id: current_user), class: "btn btn-sm m-3 px-3 ft-back-btn") %>
+                </div>
 
 				<div class="m-3 font-weight-bolder h5">
 					Edit User Profile
@@ -57,9 +58,8 @@
 				<%= form_with model: current_user, local: true do |u| %>
 
 					<div class="row justify-content-center">
-						<div class="col-5 col-md-2 m-4 p-0">
-							<div class="col-md-12 p-0 w-100 border">
-								<%# <img class="img-fluid ft-imgs" src="5wgCcaI.gif" alt="photo"> %>
+						<div class="col-6 col-md-2 m-4 p-0">
+							<div class="col-md-12 p-0 w-100">
 								<%= image_tag(current_user.avatar.url, class: "img-fluid ft-imgs", alt: "photo") %>
 							</div>
 							
