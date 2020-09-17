@@ -1,5 +1,5 @@
 $(document).on('ready turbolinks:load', function() {
-	var form = $(".form-signin, .photo-form, .album-form");
+	var form = $(".form-signin, .photo-form, .album-form, .edit_user_form");
 	form.validate({
 		rules: {
             // User

@@ -55,7 +55,7 @@
 				</div>
 				<hr>
 
-				<%= form_with model: current_user, local: true do |u| %>
+				<%= form_with model: current_user, local: true, :html => { :class => "edit_user_form"} do |u| %>
 
 					<div class="row justify-content-center">
 						<div class="col-6 col-md-2 m-4 p-0">
