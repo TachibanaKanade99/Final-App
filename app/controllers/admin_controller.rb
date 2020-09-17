@@ -3,7 +3,7 @@ class AdminController < ApplicationController
     
     def manage_photos
         if current_user.admin?
-            @photos = Photo.joins(:user).where(user_id: User.all).page(params[:page]).per(40)
+            @photos = Photo.joins(:user).where(user_id: User.all, album_id: nil).page(params[:page]).per(40)
         else
             flash[:error] = "You are not Admin =.="
             redirect_to user_path(id: current_user)

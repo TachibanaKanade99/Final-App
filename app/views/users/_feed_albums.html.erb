@@ -23,17 +23,17 @@
                             <div id="albums-carousel-<%= album.id%>" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <%= image_tag(album.images[0].url, class: "img-fluid", alt: "Card image cap") %>
+                                        <%= image_tag(album.photos.first.image.url, class: "img-fluid", alt: "Card image cap") %>
                                     </div>
 
-                                    <% album.images[1..-1].each do |image| %>
+                                    <% album.photos[1..-1].each do |photo| %>
                                         <div class="carousel-item">
-                                            <%= image_tag(image.url, class: "img-fluid", alt: "Card image cap") %>
+                                            <%= image_tag(photo.image.url, class: "img-fluid", alt: "Card image cap") %>
                                         </div>
                                     <% end %>
                                 </div>
 
-                                <% if album.images.size > 1 %>
+                                <% if album.photos.size > 1 %>
                                     <a class="carousel-control-prev" href="#albums-carousel-<%= album.id%>" role="button" data-slide="prev">
                                         <%# <span class="carousel-control-prev-icon" aria-hidden="true"></span> %>
                                         <i class="fas fa-4x fa-arrow-left text-dark"></i>
@@ -61,9 +61,9 @@
 				<div class="card bg-light border-light ml-2">
 					<div class="row py-0 px-2">
 						<div class="col-12 col-md-6 p-0">
-                            <%= image_tag(album.images[0].url, class: "position-absolute img-thumbnail album-imgs", data: {toggle: "modal", target: "#album-#{album.id}"}, alt: "Card image cap") %>
-                            <%= image_tag(album.images[0].url, class: "position-absolute rotate6 img-thumbnail album-imgs", data: {toggle: "modal", target: "#album-#{album.id}"}, alt: "Card image cap") %>
-                            <%= image_tag(album.images[0].url, class: "rotate11 img-thumbnail album-imgs", data: {toggle: "modal", target: "#album-#{album.id}"}, alt: "Card image cap") %>
+                            <%= image_tag(album.photos.first.image.url, class: "position-absolute img-thumbnail album-imgs", data: {toggle: "modal", target: "#album-#{album.id}"}, alt: "Card image cap") %>
+                            <%= image_tag(album.photos.first.image.url, class: "position-absolute rotate6 img-thumbnail album-imgs", data: {toggle: "modal", target: "#album-#{album.id}"}, alt: "Card image cap") %>
+                            <%= image_tag(album.photos.first.image.url, class: "rotate11 img-thumbnail album-imgs", data: {toggle: "modal", target: "#album-#{album.id}"}, alt: "Card image cap") %>
 						</div>
 
 						<div class="col-xs-12 col-md-6 pl-4">

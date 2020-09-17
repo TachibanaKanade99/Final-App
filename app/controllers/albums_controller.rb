@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
-	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-    before_action :find_album, only: [:edit, :update, :destroy, :add_new_images]
+	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :remove_image]
+    before_action :find_album, only: [:edit, :update, :destroy]
 
 	def new
         @album = current_user.albums.new
@@ -45,6 +45,7 @@ class AlbumsController < ApplicationController
     def destroy
         destroyed = @album.destroy
         if destroyed
+            flash[:success] = "Album deleted successfully!"
             redirect_to user_path(id: current_user)
         else
             flash[:error] = @album.errors.messages
@@ -54,8 +55,10 @@ class AlbumsController < ApplicationController
 
     def remove_image
         @album = current_user.albums.find(params[:album_id])
-        @album.photos.delete_at(params[:photo_id].to_i)
+        @album.photos.delete(params[:photo_id])
         @album.save
+        # @photo = Photo.find(params[:photo_id])
+        # @photo.destroy
         redirect_to edit_user_album_path(id: @album.id)
     end
 

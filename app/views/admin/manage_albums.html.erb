@@ -59,9 +59,9 @@
                                         <div class="col-10 col-md-2 m-4 p-3 bg-light text-center border">
                                             
                                             <div class="col-12 col-md-12  p-0">       
-                                                <%= image_tag(album.images[0].url, class: "position-absolute img-fluid img-thumbnail ft-imgs", alt: "photo") %>
-                                                <%= image_tag(album.images[0].url, class: "position-absolute rotate6 img-fluid img-thumbnail ft-imgs", alt: "photo") %>
-                                                <%= image_tag(album.images[0].url, class: "rotate11 img-fluid img-thumbnail ft-imgs", alt: "photo") %>
+                                                <%= image_tag(album.photos.first.image.url, class: "position-absolute img-fluid img-thumbnail ft-imgs", alt: "photo") %>
+                                                <%= image_tag(album.photos.first.image.url, class: "position-absolute rotate6 img-fluid img-thumbnail ft-imgs", alt: "photo") %>
+                                                <%= image_tag(album.photos.first.image.url, class: "rotate11 img-fluid img-thumbnail ft-imgs", alt: "photo") %>
 
                                             </div>
 

@@ -56,7 +56,7 @@
 			<% if params.has_key?(:user) %>
                 <%= render 'profile', 
                     user: User.find(params[:user].to_i), 
-                    photos: User.find(params[:user].to_i).photos.where(sharing_mode: 'public').page(params[:page]).per(8), 
+                    photos: User.find(params[:user].to_i).photos.where(sharing_mode: 'public', album_id: nil).page(params[:page]).per(8), 
                     albums: User.find(params[:user].to_i).albums.where(sharing_mode: 'public').page(params[:page]).per(8), 
                     followings: User.find(params[:user].to_i).followings.page(params[:page]).per(8), 
                     followers: User.find(params[:user].to_i).followers.page(params[:page]).per(8)  
@@ -65,7 +65,7 @@
 			<% else %>
                 <%= render 'profile', 
                     user: current_user, 
-                    photos: current_user.photos.page(params[:page]).per(8), 
+                    photos: current_user.photos.where(album_id: nil).page(params[:page]).per(8), 
                     albums: current_user.albums.page(params[:page]).per(8),
                     followings: current_user.followings.page(params[:page]).per(8),
                     followers: current_user.followers.page(params[:page]).per(8)
