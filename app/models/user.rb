@@ -57,8 +57,8 @@ class User < ApplicationRecord
 	# User has many likes
 	has_many :likes, dependent: :destroy
 
-	# def send_welcome_mail
-	# 	UserMailer.with(user: self).welcome_email.deliver_later		
-	# end
+	def send_welcome_mail
+		UserMailer.with(user: self).welcome_email.deliver_now		
+	end
 	
 end
