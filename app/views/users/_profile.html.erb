@@ -129,11 +129,11 @@
                         <div class="col-7 col-md-2 mx-4 mb-4 p-0">
                             <div class="col-12 col-md-12 p-0">
                                 
-                                <%= image_tag(album.images[0].url, class: "position-absolute rotate6 img-fluid img-thumbnail ft-imgs", alt: "album") %> 
-                                <%= image_tag(album.images[0].url, class: "position-absolute rotate11 img-fluid img-thumbnail ft-imgs", alt: "album") %>
-                                <%= image_tag(album.images[0].url, class: "img-fluid img-thumbnail ft-imgs", alt: "album") %>
+                                <%= image_tag(album.photos.first.image.url, class: "position-absolute rotate6 img-fluid img-thumbnail ft-imgs", alt: "album") %> 
+                                <%= image_tag(album.photos.first.image.url, class: "position-absolute rotate11 img-fluid img-thumbnail ft-imgs", alt: "album") %>
+                                <%= image_tag(album.photos.first.image.url, class: "img-fluid img-thumbnail ft-imgs", alt: "album") %>
 
-                                <span class="position-absolute text-center text-white font-weight-bold border border-dark rounded-circle p-3 count_albums"> <%= album.images.size %> Photos </span>
+                                <span class="position-absolute text-center text-white font-weight-bold border border-dark rounded-circle p-3 count_albums"> <%= album.photos.size %> Photos </span>
 
                                 <% if album.sharing_mode == 'private' %>
                                     <button class="top-right rounded-circle">

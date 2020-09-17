@@ -9,6 +9,9 @@ class AlbumsController < ApplicationController
     def create
         # byebug
         @album = current_user.albums.create(album_params)
+        @photo = @album.photos.new(photo_params)
+        @photo.user_id = current_user.id
+        @photo.save
         if @album.valid?
             flash[:success] = "Add Successfully"
             redirect_to user_path(id: current_user)
@@ -23,8 +26,11 @@ class AlbumsController < ApplicationController
 	
     def update
         # byebug 
-        # add_new_images(image_params[:images])
-        # updated = @album.update!(album_params_without_images)
+        if !params[:album][:image].nil?
+            @photo = @album.photos.new(photo_params)
+            @photo.user_id = current_user.id
+            @photo.save
+        end
         updated = @album.update!(album_params)
 
         if updated
@@ -48,29 +54,19 @@ class AlbumsController < ApplicationController
 
     def remove_image
         @album = current_user.albums.find(params[:album_id])
-        @album.images.delete_at(params[:image].to_i)
+        @album.photos.delete_at(params[:photo_id].to_i)
         @album.save
         redirect_to edit_user_album_path(id: @album.id)
     end
 
 	private 
 		def album_params
-			params.require(:album).permit(:title, :sharing_mode, :description, { images: [] })
+			params.require(:album).permit(:title, :sharing_mode, :description)
         end
 
-        # def album_params_without_images
-        #     params.require(:album).permit(:title, :sharing_mode, :description)
-        # end
-
-        # def image_params
-        #     params.require(:album).permit({ images: [] })
-        # end
-
-        # def add_new_images(new_image)
-        #     images = @album.images
-        #     images += new_image.to_a
-        #     @album.update_attributes(images: images)
-        # end
+        def photo_params
+            params.require(:album).permit(:title, :sharing_mode, :description, :image, :user_id)
+        end
         
         def find_album
             @album = current_user.albums.find(params[:id])

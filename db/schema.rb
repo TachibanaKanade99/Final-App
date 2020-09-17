@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_044751) do
+ActiveRecord::Schema.define(version: 2020_09_17_103916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_09_16_044751) do
     t.bigint "user_id", null: false
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.json "images", null: false
     t.integer "likes_count", default: 0
     t.index ["user_id"], name: "index_albums_on_user_id"
   end
@@ -51,7 +50,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_044751) do
     t.bigint "user_id", null: false
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.string "image", null: false
+    t.string "image"
     t.bigint "album_id"
     t.integer "likes_count", default: 0
     t.index ["album_id"], name: "index_photos_on_album_id"

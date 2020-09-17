@@ -1,6 +1,6 @@
 class Album < ApplicationRecord
     # Image Uploader
-    mount_uploaders :images, ImageUploader
+    # mount_uploaders :images, ImageUploader
 
     # Pagination
     paginates_per 6
@@ -34,8 +34,9 @@ class Album < ApplicationRecord
 
 	# Active Record Association
 
-	belongs_to :user, counter_cache: true
-	has_many :photos
+    belongs_to :user, counter_cache: true
+    
+	has_many :photos, dependent: :destroy
 	has_many :likes, as: :likeable
 
 
