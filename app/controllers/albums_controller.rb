@@ -19,12 +19,13 @@ class AlbumsController < ApplicationController
     end
 
     def edit
-        flash.clear
 	end
 	
     def update
         # byebug 
-        add_new_images(image_params[:images])
+        # add_new_images(image_params[:images])
+        
+        @album.images += params[:album][:images]
         updated = @album.update!(album_params_without_images)
 
         if updated
@@ -61,15 +62,15 @@ class AlbumsController < ApplicationController
             params.require(:album).permit(:title, :sharing_mode, :description)
         end
 
-        def image_params
-            params.require(:album).permit({ images: [] })
-        end
+        # def image_params
+        #     params.require(:album).permit({ images: [] })
+        # end
 
-        def add_new_images(new_image)
-            images = @album.images
-            images += new_image.to_a
-            @album.assign_attributes(images: images)
-        end
+        # def add_new_images(new_image)
+        #     images = @album.images
+        #     new_image += images
+        #     # @album.assign_attributes(images: images)
+        # end
         
         def find_album
             @album = current_user.albums.find(params[:id])
