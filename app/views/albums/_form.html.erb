@@ -25,6 +25,7 @@
         <% if type == 'new_album' %>
             <div class="image">
                 <div class="col-xs-12 col-md-12 mt-2 btn photo-btn">
+                    <%# <%= a.file_field :images, multiple: true, class: "file-input"%> 
                     <%= a.file_field :images, multiple: true, class: "file-input"%>
                     <i class="fas fa-3x fa-plus p-4"></i>
                 </div>
