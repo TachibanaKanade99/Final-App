@@ -94,9 +94,15 @@
                             </div>
                         <% end %>
                     <% else %>
-                        <div class="col-12 col-md-12">
-                            <p class="text-center text-blue">You have not add any photos yet! Add one</p>
-                        </div>
+                        <% if user != current_user %>
+                            <div class="col-12 col-md-12">
+                                <p class="text-center text-blue">This user has not published any photos yet!</p>
+                            </div>
+                        <% else %>
+                            <div class="col-12 col-md-12">
+                                <p class="text-center text-blue">You have not added any photos yet! Add one</p>
+                            </div>
+                        <% end %>
                     <% end %>
                 </div>
             </div>
@@ -149,9 +155,15 @@
                         </div>
                     <% end %>
                 <% else %>
-                    <div class="col-12 col-md-12">
-                        <p class="text-center text-blue">You have not add any albums yet! Add one</p>
-                    </div>
+                    <% if user != current_user %>
+                        <div class="col-12 col-md-12">
+                            <p class="text-center text-blue">This user has not published any albums yet!</p>
+                        </div>
+                    <% else %>
+                        <div class="col-12 col-md-12">
+                            <p class="text-center text-blue">You have not added any albums yet! Add one</p>
+                        </div>
+                    <% end %>
                 <% end %>
             </div>
         </div>
@@ -250,9 +262,15 @@
                             </div>
                         <% end %>
                     <% else %>
-                        <div class="col-12 col-md-12">
-                            <p class="text-center text-blue"> You have not follow anyone yet! </p>
-                        </div>
+                        <% if user != current_user %>
+                            <div class="col-12 col-md-12">
+                                <p class="text-center text-blue"> This user has no following! </p>
+                            </div>
+                        <% else %>
+                            <div class="col-12 col-md-12">
+                                <p class="text-center text-blue"> You have not follow anyone yet! </p>
+                            </div>
+                        <% end %>
                     <% end %>
                 </div>
             </div>
@@ -352,9 +370,15 @@
                             </div>
                         <% end %>
                     <% else %>
-                        <div class="col-12 col-md-12">
-                            <p class="text-center text-blue"> No one follows you ! </p>
-                        </div>
+                        <% if user != current_user %>
+                            <div class="col-12 col-md-12">
+                                <p class="text-center text-blue"> This user has no followers! </p>
+                            </div>
+                        <% else %>
+                            <div class="col-12 col-md-12">
+                                <p class="text-center text-blue"> No one follows you! </p>
+                            </div>
+                        <% end %>
                     <% end %>
                 </div>
             </div>
@@ -370,15 +394,3 @@
 </div>
 
 <div class="col-12 col-md-12 w-100 my-5"></div>
-
-<%# <footer>
-	<nav aria-label="Page navigation example">
-		<ul class="pagination m-3 justify-content-center">
-			<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-			<li class="page-item active"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">Next</a></li>
-		</ul>
-	</nav>
-</footer> %>
